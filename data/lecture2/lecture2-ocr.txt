@@ -1,0 +1,175 @@
+INTRODUCTION TO CLOUD TECHNOLOGIES
+(ICA0017)
+SIIM VENE
+
+Cloud computing is the on-demand
+delivery of compute power, database
+storage, applications, and other IT
+resources through a cloud services
+platform via the Internet with pay-as-yougo pricing.
+
+COURSE OVERVIEW
+
+§ 1. History, different service types (XaaS)
+§ 2. AWS, service portfolio
+§ 3. IAM services - users, groups, roles, governance
+§ 4. Compute services – EC2, serverless, containers
+§ 5. Storage services - S3, EBS, EFS, RDS
+§ 6. Network services - VPC, CDN
+§ 7. Logging, monitoring
+§ 8. Automation, feasibility
+
+2003
+
+Amazon Web Services (AWS) on turvaline
+pilveteenuste platvorm, pakkudes
+arvutusjõudlust, andmete salvestamise ja
+jagamise teenust ning muid funktsioone
+aitamaks ettevõttel kasvada.
+
+Based on EC2 monthly spend, here are the
+top 10 Amazon AWS customers
+Netflix
+$19 million
+Twitch
+$15 million
+LinkedIn
+$13 million
+Facebook
+$11 million
+Turner Broadcasting
+$10 million
+BBC
+$9 million
+Baidu
+$9 million
+ESPN
+$8 million
+Adobe
+$8 million
+Twitter
+$7 million
+
+Redundant paths to transit centers
+Transit centers connect to:
+• Private links to other aws regions
+• Private links to aws direct connect
+customers
+• Internet through peering and paid
+transit
+Metro area DWDM links between AZ’s
+82864 fiber strands in region
+AZ’s <2ms apart, usually <1ms
+25Tbps peaks inter-AZ’s traffic
+
+EDGE LOCATIONS > AVAILABILITY ZONES > REGIONS
+
+TEENUSED - ARVUTUSJÕUDLUS
+
+§ EC2 (Elastic Compute Cloud) – virtuaalserverid, nii Windows kui Linux
+§ LightSail – Automaatselt haldab serverite, salvestuspinna, võrgu
+konfiguratsiooni komplekti, et saada rakendust kiiresti käivitada
+§ ECS/EKS – konteineriteenused, mis võimaldavad kasutada Dockeri
+konteinereid pilves
+§ Lambda/Fargate – serverivabad teenused koodi ja konteinerite jaoks
+
+TEENUSED - ANDMESALVESTUS
+
+§ S3 (Simple Storage Service) — AWS andmesalvestusteenus talletamaks
+objekte nagu näiteks failid, kataloogid, pildid, videod, dokumendid. Ei
+saa kasutada programmide või operatsioonisüsteemi paigaldamiseks.
+§ EBS (Elastic Block Storage) – plokksalvestuse pind EC2
+virtuaalserveritele.
+§ EFS (Elastic File System) — NFSv4 protokolli kasutav võrgufailisüsteem.
+§ Glacier — Ülimadala maksumusega arhiivipind.
+
+TEENUSED - ANDMEBAASID
+
+§ RDS (Relational Database Service) — Relatsiooniliste hallatud
+andmebaaside teenus (MySQL, MariaDB, PostgreSQL, Oracle või SQL
+Server). Need andmebaasid on täielikult hallatud AWS poolt.
+§ DynamoDB — Kõrgkäideldav suure jõudlusega NoSQL andmebaasi
+teenus. Võimaldab mõne millisekundilist latentsust ükskõik mis skaalal.
+§ RedShift — AWS poolt pakutav andmelao lahendus.
+
+TEENUSED – VÕRK JA CDN
+
+§ VPC (Virtual Private Cloud) — Virtuaalne andmekeskus, kuhu saab
+seadistada AWS pilveteenused. Võimaldab ressursse üksteisest
+isoleerida.
+§ CloudFront (Content Delivery Network - CDN) - sisuteenuse
+edastusvõrk, võimaldab puhverdada andmeid üle maailma.
+
+TEENUSED – TEHISINTELLEKT
+
+§ Bedrock – AI alusmudelite teenus, võimaldab erinevate hulgast valida,
+neid treenida, oma andmetega rikastada
+§ Amazon Q – AI assistant
+
+TEENUSED – HALDUSTÖÖRIISTAD
+
+§ CloudWatch — Monitooringuvahend AWS keskkondade ja teenuste
+kasutuse jälgimiseks (virtuaalserveri protsessorikasutus jms), käivitab
+teavitusi vastavalt erinevatele lävenditele.
+§ CloudFormation — Automatiseerimise vahend, kasutab infrastruktuurkui-kood printsiipe tarnimaks terveid keskkondi või kompleksseid
+süsteeme minutitega.
+§ CloudTrail — AWS ressursside auditeerimise vahend.
+§ Trusted Advisor — Annab soovitusi kuidas kulusid optimeerida, kuidas
+muuta oma keskkond turvalisemaks.
+§ AWS Auto Scaling — Võimaldab automaatselt skaleerida oma süsteemi
+üles või alla vastavalt CloudWatch meetrikale.
+
+TEENUSED – TURVALISUS, KONTOHALDUS
+
+§ IAM (Identity and Access Management) — Kasutajate, rollide, gruppide
+ja privileegide haldus.
+§ Inspector — Virtuaalserveritesse paigaldatav agent, mis raporteerib
+turvanõrkustest.
+§ KMS (Key Management Service) — Krüptovõtmete haldusteenus.
+
+WHO IS RESPONSIBLE FOR WHAT?
+
+SECURITY OF THE CLOUD
+
+SECURITY IN THE CLOUD
+
+SHARED RESPONSIBILITY
+
+§ Shared Controls – Controls which apply to both the infrastructure layer
+and customer layers, but in completely separate contexts or
+perspectives. In a shared control, AWS provides the requirements for the
+infrastructure and the customer must provide their own control
+implementation within their use of AWS services.
+Examples include:
+§ Patch Management – AWS is responsible for patching and fixing flaws
+within the infrastructure, but customers are responsible for patching their
+guest OS and applications.
+§ Configuration Management – AWS maintains the configuration of its
+infrastructure devices, but a customer is responsible for configuring their
+own guest operating systems, databases, and applications.
+§ Awareness & Training - AWS trains AWS employees, but a customer
+must train their own employees.
+
+OK COOL NOW WHAT?
+
+*
+
+*
+
+OK COOL NOW WHAT?
+
+.. IN ADDITION
+
+CLI – The AWS Command Line Interface (AWS CLI) is an open source tool
+that enables you to interact with AWS services using commands in your
+command-line shell.
+https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html
+SDK/CDK – *DKs take the complexity out of coding by providing
+language-specific APIs for AWS services
+
+TALLINNA TEHNIKAÜLIKOOL
+Ehitajate tee 5, 19086 Tallinn,
+Tel 620 2002 (E-R 8.30–17.00)
+taltech.ee
+
+

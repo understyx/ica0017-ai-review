@@ -1,0 +1,293 @@
+INTRODUCTION TO CLOUD TECHNOLOGIES
+(ICA0017)
+SIIM VENE
+
+STEPS TO CREATE A VPC
+
+VPC
+Choosing an
+address range
+
+172.16.0.0
+172.16.1.0
+172.16.2.0
+
+Create subnets in
+Availability Zones
+
+Create route
+to the internet
+
+Authorize traffic
+to/from the VPC
+
+VPC
+
+172.31.0.0/16
+
+2600:1f16:14d:6300::/56
+eu-west-1a
+
+eu-west-1b
+
+eu-west-1c
+
+172.31.0.0/24
+
+172.31.1.0/24
+
+172.31.2.0/24
+
+2600:1f16:14d:6300::/64
+
+2600:1f16:14d:6301::/64
+
+2600:1f16:14d:6302::/64
+
+VPC subnet
+
+VPC subnet
+
+VPC subnet
+
+Availability Zone
+
+Availability Zone
+
+Availability Zone
+
+https://aws.amazon.com/blogs/networking-and-content-delivery/how-to-securelypublish-internet-applications-at-scale-using-application-load-balancer-and-aws-privatelink
+
+COURSE OVERVIEW
+§ 1. History, different service types (XaaS)
+§ 2. AWS, service portfolio, console, CLI, API
+§ 3. Compute services – EC2, serverless, containers
+§ 4. IAM services - users, groups, roles, governance
+§ 5. Storage services - S3, EBS, EFS, RDS
+§ 6. Network services - VPC, CDN
+§ 7. Logging, monitoring
+§ 8. Automation, feasibility
+
+IT SECURITY MATTERS
+Securing IT infrastructure is:
+§ Complex
+§ Expensive
+§ Time consuming – build/configure/maintain
+§ Difficult to track all the changes in IT environment
+§ Hard to do effectively
+
+WHAT HAPPENS IN CLOUD, NEVER STAYS IN CLOUD
+How do you know:
+§ Who deployed a new EC2? Or deleted one?
+§ What application is unusable by the users?
+§ What needs to happen when
+
+hits the fan?
+
+§ Who needs to get notified?
+§ How to have an auditable trail of everything happening in your AWS
+account?
+
+MONITORING AND LOGGING
+§ Deep visibility into API calls
+§ Log aggregation and analytics
+§ Alert notifications
+§ Automated
+
+TWO MAIN SERVICES
+
+AWS CLOUDTRAIL
+
+Web service that records AWS API calls for your account
+and delivers log files for you
+§ Management evenets
+§ Data events
+§ Insight events
+
+MANAGEMENT EVENTS
+Management events provide information about management operations
+that are performed on resources in your AWS account. These are also
+known as control plane operations.
+• Configuring security (for example, AWS Identity and Access
+Management AttachRolePolicy API operations).
+• Registering devices (for example, Amazon EC2 CreateDefaultVpc API
+operations).
+• Configuring rules for routing data (for example, Amazon
+EC2CreateSubnet API operations).
+• Setting up logging (for example, AWS CloudTrail CreateTrailAPI
+operations).
+
+DATA EVENTS
+Data events provide information about the resource operations performed
+on or in a resource. These are also known as data plane operations. Data
+events are often high-volume activities.
+§ Amazon S3 object-level API activity on buckets and objects in buckets.
+(for example GetObject, DeleteObject, and PutObject API operations)
+§ AWS Lambda function execution activity (the Invoke API).
+§ CloudTrail PutAuditEvents activity on a CloudTrail Lake channel that is
+used to log events from outside AWS.
+§ Amazon SNS Publish and PublishBatch API operations on topics.
+
+INSIGHT EVENTS
+CloudTrail Insights events capture unusual API call rate or error rate activity
+in your AWS account by analyzing CloudTrail management activity.
+§ Your account typically logs no more than 20 Amazon S3 deleteBucket API
+calls per minute, but your account starts to log an average of
+100 deleteBucket API calls per minute. An Insights event is logged at the
+start of the unusual activity, and another Insights event is logged to
+mark the end of the unusual activity.
+§ Your account typically logs 20 calls per minute to the Amazon
+EC2AuthorizeSecurityGroupIngress API, but your account starts to log
+zero calls to AuthorizeSecurityGroupIngress. An Insights event is logged
+at the start of the unusual activity, and ten minutes later, when the
+unusual activity ends, another Insights event is logged to mark the end
+of the unusual activity.
+
+AWS CLOUDTRAIL
+
+RDP/SSH
+
+Control Plane
+
+Console
+API
+
+Public
+API
+
+Amazon Cloud
+
+AWS CLOUDTRAIL
+Enables:
+§ After-the-fact incident investigation
+§ Near-realtime intrusion detection
+§ Industry and regulatory compliance
+§ Enabled by default for 7 days when you create an account
+Provides:
+§ Logs API call details (for supported services)
+https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html
+
+WHAT IS LOGGED?
+§ Metadata of API calls
+§ Identity of API caller
+§ Time of the API call
+§ Source IP address of the API caller
+§ Request parameters
+§ Response elements retuned by the service
+
+WHERE IS IT LOGGED?
+§ Event logs are sent to an S3 bucket
+§ You manage the retention in S3!
+§ Delivered every 5 minutes up to 15-min delay
+§ Notifications available about the actions
+§ Can be aggregated across regions
+§ Can be aggregated across accounts
+
+CLOUDTRAIL LOG VALIDATION
+The integrity of the logs is validated in addition:
+§ Was the log modified or deleted?
+§ Valdated by hashing every log file with SHA-256
+
+SECURING THE LOGS
+If CloudTrail logs contains metadata, not application data, why bother
+securing them?
+Logs may contain PII data such as usernames and team/group
+membership. Also can contain detailed configuration information
+
+SECURING THE LOGS
+§ Use IAM policies and S3 bucket policies to restrict access to S3 bucket
+containing the logs
+§ Use SSE-S3 or SSE-KMS to encrypt the logs
+§ Configure SNS notifications and log file validation
+§ Restrict S3 delete access
+
+ACTING UPON LOGS
+§ CloudTrail itself does nothing with logs
+§ You can review logs in the CloudTrail console
+§ Utilizes CloudWatch Events, to define workflows
+§ Detect unusual activity by enabling CloudTrail insights
+
+AWS CLOUD TRAIL
+4vCPU, 6GB
+Control Plane
+
+Console
+API
+
+Public
+API
+
+CloudTrail
+S3 bucket
+
+If x > 2vCPU & 4GB RAM
+Notify & terminate
+
+Event
+Source
+Events
+Rules
+
+Event Targets
+
+AWS CLOUDWATCH
+
+A monitoring service for AWS cloud resources and the
+applications you run on AWS
+
+Key components:
+• CloudWatch
+• CloudWatch Logs
+• CloudWatch Events
+
+AWS CLOUDWATCH
+Enables:
+§ Resource utilization, operational performance monitoring
+§ Log aggredation and basic analysis
+Provides:
+§ Real time monitoring within AWS for resources and application
+§ Hooks to event triggers
+
+CLOUDWATCH
+§ Real time
+§ Metrics
+§ Alarms
+§ Notifications
+§ Custom metrics
+
+CLOUDWATCH LOGS
+§ Pushed from any AWS service (including CloudTrail)
+§ Pushed from your application/system
+§ Can also be utilized for on-premises/non-AWS workloads
+§ Metrics from log entry matches
+§ Stored infefinitely (not your S3)
+
+CLOUDWATCH EVENTS
+Near real time stream on system events
+§ Events:
+§ AWS resources state change
+§ AWS Cloudtrail (API calls)
+§ Custom events (code)
+§ Sheduled
+§ Rules – actinoable items that match events with targets
+§ Targets – AWS lambda functions, SNS topics etc
+
+NOTIFICATIONS
+
+SNS (SIMPLE NOTIFICATIONS SERVICE)
+SNS is a managed service that provides message delivery from publishers
+to subscribers (also known as producers and consumers)
+§ Publishers communicate asynchronously with subscribers by sending
+messages to a topic, which is a logical access point and communication
+channel.
+§ Clients can subscribe to the SNS topic and receive published messages
+using a supported endpoint type, such as Amazon Data Firehose, Amazon
+SQS, AWS Lambda, HTTP, email, mobile push notifications, and mobile
+text messages (SMS).
+
+TALLINNA TEHNIKAÜLIKOOL
+Ehitajate tee 5, 19086 Tallinn,
+Tel 620 2002 (E-R 8.30–17.00)
+taltech.ee
+
+

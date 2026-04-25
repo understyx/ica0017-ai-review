@@ -1,0 +1,235 @@
+INTRODUCTION TO CLOUD TECHNOLOGIES
+(ICA0017)
+SIIM VENE
+
+IAM
+§ IAM is universal – does not require region selection, when you create a
+user or a group, this is created globally
+§ Enables you to control, who can do what in your AWS account
+§ Uses familiar control concepts:
+USER
+GROUP
+POLICY
+ROLE
+
+Source: https://www.slideshare.net/AmazonWebServices/introduction-tothree-aws-security-services-november-2016-webinar-series
+
+AWS ORGANIZATIONS - AWS ACCOUNT MANAGEMENT IS HARD
+
+© James Lin
+
+Source: https://jayendrapatil.com/aws-organizations/
+
+COURSE OVERVIEW
+§ 1. History, different service types (XaaS)
+§ 2. AWS, service portfolio, console, CLI, API
+§ 3. Compute services – EC2, serverless, containers
+§ 4. IAM services - users, groups, roles, governance
+§ 5. Storage services - S3, EBS, EFS, RDS
+§ 6. Network services - VPC, CDN
+§ 7. Logging, monitoring
+§ 8. Automation, feasibility
+
+AWS STORAGE SERVICES
+
+SIMPLE STORAGE SERVICE
+
+Although Amazon Web Services (AWS) does not publicly provide the details of S3's technical design,
+Amazon S3 manages data with an object storage architecture which aims to provide scalability,
+high availability, and low latency with 99.999999999% durability and between 99.95% to 99.99% availability
+
+S3
+§ Amazon Simple Storage Service (Amazon S3) is an object storage service
+that offers industry-leading scalability, data availability, security, and
+performance. This means customers of all sizes and industries can use it
+to store and protect any amount of data for a range of use cases, such as
+websites, mobile applications, backup and restore, archive, enterprise
+applications, IoT devices, and big data analytics.
+§ Amazon S3 provides easy-to-use management features so you can
+organize your data and configure finely-tuned access controls to meet
+your specific business, organizational, and compliance requirements.
+§ Amazon S3 is designed for 99.999999999% (11 9's) of durability, and
+stores data for millions of applications for companies all around the
+world.
+
+S3
+§ Amazon S3 is a simple key-value store designed to store as many objects
+as you want (unlimited amount!). You store these objects in one or more
+buckets, and each object can be up to 5 TB in size. An object consists of
+the following:
+§ Key – The name that you assign to an object. You use the object key to
+retrieve the object.
+§ Version ID – Within a bucket, a key and version ID uniquely identify an
+object.
+§ Value – The content that you are storing
+§ Metadata – A set of name-value pairs with which you can store
+information regarding the object.
+§ Access Control Information – You can control access to the objects
+you store in Amazon S3
+
+S3 USE CASES
+§ Cloud-native application data
+§ Build fast, cost-effective mobile and Internet-based applications by using
+AWS services and Amazon S3 to store production data. With Amazon S3,
+you can upload any amount of data and access it anywhere in order to
+deploy applications faster and reach more end users. Storing data in
+Amazon S3 also means you have access to the latest AWS developer
+tools and services for machine learning and analytics to innovate and
+optimize your cloud-native applications.
+
+S3 USE CASES
+§ Backup and restore
+§ Build scalable, durable, and secure backup and restore solutions with
+Amazon S3 and other AWS services, such as S3 Glacier, Amazon EFS,
+and Amazon EBS, to augment or replace existing on-premises
+capabilities. AWS and APN partners can help you meet Recovery Time
+Objectives (RTO), Recovery Point Objectives (RPO), and compliance
+requirements. With AWS, you can back up data already in the AWS Cloud
+or use AWS Storage Gateway, a hybrid storage service, to send backups
+of on-premises data to AWS.
+
+S3 USE CASES
+§ Disaster recovery (DR)
+§ Protect critical data, applications, and IT systems that are running in the
+AWS Cloud or in your on-premises environment without incurring the
+expense of a second physical site. With Amazon S3 storage, S3 CrossRegion Replication, and other AWS compute, networking, and database
+services, you can create DR architectures in order to quickly and easily
+recover from outages caused by natural disasters, system failures, and
+human errors.
+
+S3 USE CASES
+§ Archive
+§ Retire physical infrastructure, and archive data with S3 Glacier and S3
+Glacier Deep Archive. These S3 Storage Classes retain objects long-term
+at the lowest rates. Simply create an S3 Lifecycle policy to archive
+objects throughout their lifecycles, or upload objects directly to the
+archival storage classes. With S3 Object Lock, you can apply retention
+dates to objects to protect them from deletions, and meet compliance
+requirements. Unlike tape libraries, S3 Glacier lets you restore archived
+objects in as little as one minute for expedited retrievals and 3-5 hours
+for standard retrievals. Bulk data restores from S3 Glacier and all
+restores from S3 Glacier Deep Archive are completed within 12 hours.
+
+S3 USE CASES
+§ Data lakes and big data analytics
+§ Accelerate innovation by building a data lake on Amazon S3, and extract
+valuable insights using query-in-place, analytics, and machine learning
+tools. As your data lake grows, use S3 Access Points to easily configure
+access to your data, with specific permissions for each application or sets
+of applications. You can also use AWS Lake Formation to quickly create a
+data lake, and centrally define and enforce security, governance, and
+auditing policies. The service collects data across your databases and S3
+resources, moves it into a new data lake in Amazon S3, and cleans and
+classifies it using machine learning algorithms. All AWS resources can be
+scaled up to accommodate your expanding data stores — without upfront
+investments.
+
+AWS EBS
+
+AWS EFS
+§ Provides simple, scalable, highly available and durable file storage in
+AWS
+§ Petabyte-scale file system is distributed across an unconstrained number
+of storage servers in multiple AZ’s
+§ Elastic capacity automatically grows and shrinks with the usage as you
+add and remove the files
+§ Standard POSIX file system semantics
+§ Can be shared between different systems
+
+AWS EFS – USE CASES
+§ Web serving
+§ Database backups
+§ Container storage
+§ Home directories
+§ Content management
+§ Analytics
+§ etc
+
+NFS DO IT YOURSELF
+§ Launch, patch, monitor and pay for servers
+§ Create, attach, montor and pay for provisioned disks (EBS)
+§ Create, maintain and monitor Auto Scaling group
+§ Install, patch, monitor and pay* for file system software
+§ Configure, maintain, monitor and pay for file system data replication
+§ Configure DNS client for HA access
+
+AWS EFS
+§ File system is a regional construct!
+§ Default throughoutput limit 3GB/s
+§ Mount using NFSv4.1
+§ File blocks distributed over commodity hardware
+§ System automatically replicates
+§ Block size 128MB (smallest size that can be updated is block)
+
+COMPARISON CHART
+S3
+
+EBS
+
+EFS
+
+Highly scalable,
+avaialble, durable
+
+High performance
+
+Highly scalable,
+avaialble, durable
+
+Size scales
+
+Has limited size
+
+Size scales
+
+Data can be stored and
+retreived from Web
+interface
+
+EBS needs to be
+mounted to EC2 to store
+and retreive
+
+Data can be stored and
+retreived from Web
+interface and AWS
+services
+
+No software can be
+installed
+
+Software and OS can be
+installed
+
+Software can me
+installed (no OS)
+
+Lower than EBS and EFS
+
+Fastest
+
+Faster than S3, slower
+than EBS
+
+Price per GB/month
+$0.023
+
+Price per GB/month
+$0.10 (also pay for
+unused capacity)
+
+Price per GB/month
+$0.30
+
+AWS RDS
+
+AWS RDS
+
+AWS AURORA
+
+TALLINNA TEHNIKAÜLIKOOL
+Ehitajate tee 5, 19086 Tallinn,
+Tel 620 2002 (E-R 8.30–17.00)
+taltech.ee
+
+

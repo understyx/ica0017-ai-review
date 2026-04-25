@@ -1,0 +1,300 @@
+INTRODUCTION TO CLOUD TECHNOLOGIES
+(ICA0017)
+SIIM VENE
+
+COURSE OVERVIEW
+§ 1. History, different service types (XaaS)
+§ 2. AWS, service portfolio, console, CLI, API
+§ 3. Compute services – EC2, serverless, containers
+§ 4. IAM services - users, groups, roles, governance
+§ 5. Storage services - S3, EBS, EFS, RDS
+§ 6. Network services - VPC, CDN
+§ 7. Logging, monitoring
+§ 8. Automation, feasibility
+
+AWS CLOUDTRAIL
+4vCPU, 6GB
+Control Plane
+
+Console
+API
+
+Public
+API
+
+CloudTrail
+S3 bucket
+
+If x > 2vCPU & 4GB RAM
+Notify & terminate
+
+Event
+Source
+Events
+Rules
+
+Event Targets
+
+THE CASE FOR INVESTING IN CLOUD AUTOMATION
+Cloud automation is what drives better availability, better cost
+management, better governance, better time-to-delivery
+§ Infrastructure as a code
+
+Bzzzzz-zzz-zz
+
+§ Reduces infrastructure engineering
+§ Simplifies cloud operations
+
+CLOUD AUTOMATION FRAMEWORK
+§ Infrastructure automation: Infrastructure is structured and built into
+templates, where it can be versioned and easily replicated for future
+environments.
+§ Deployment automation: Code deployment processes are integrated with
+cloud-native tools, improving deployment velocity and reducing manual
+effort (and error).
+§ Self-healing/auto-correcting/self-monitoring: Configuration management
+scripts and monitoring tools catch anomalies and proactively correct
+failed/misconfigured resources.
+
+.. THIS IN TURN ENABLES:
+§ Central control
+§ Horisontal scalability / High Availability architecture
+§ Outdated instances are terminated rather than updated
+§ Every code puch can be rebuild of an entire stack
+§ Creates standardized and immutable infrastructure
+§ Reduces incidents and human errors
+§ Improved transparency
+§ Efficiency
+§ Simplified patching
+§ Cost efficiency and tracking
+
+AUTOMATION
+§ AWS Image Builder
+§ Launch templates
+§ Autoscale groups
+§ Cloudformation
+§ Terraform
+
+EC2 IMAGE BUILDER
+EC2 Image Builder is a fully managed AWS service that makes it easier to
+automate:
+§ Creation
+§ Management
+§ Deployment
+of customized, secure, and up-to-date server images that are pre-installed
+and pre-configured with software and settings to meet specific IT
+standards.
+
+EC2 IMAGE BUILDER
+You can use the AWS Management Console, AWS CLI, or APIs to create
+custom images in your AWS account:
+§ Provide starting artifacts
+§ Add and remove software
+§ Customize settings and scripts
+§ Run selected tests
+§ Distribute images to AWS Regions
+
+EC2 IMAGE BUILDER EXAMPLE
+Tasklist:
+§ Create Image pipeline
+§ Create recipie
+§ Build/select components
+§ (Optional) Build/select test componenents
+§ (Optional)Define infrastructure configuration
+§ (Optional) Create distribution settings
+
+After creation everything is run and tested automatically
+(takes about 10min)
+
+AMAZON EC2 AUTO SCALING
+Auto Scaling groups are collections of Amazon EC2 instances that enable
+automatic scaling and fleet management features.
+These features help you maintain the health and availability of your
+applications.
+
+AMAZON EC2 AUTO SCALING
+Benefits and features:
+§ Fault Tolerance – Detect when instance is unhealthy, terminate it and
+launch an instance to replace it
+§ Availability - Ensure that your application always has the right amount of
+capacity to handle the current traffic demand
+§ Cost Management - Save money by dynamically launching instances
+when they are needed and terminating them when they aren't
+
+CONCEPTS
+
+COST
+§ Amazon EC2 Auto Scaling features have no additional fees beyond the
+service fees for Amazon EC2, CloudWatch (for scaling policies), and the
+other AWS resources that you use.
+
+AUTO SCALING GROUPS
+To create a Auto Scaling Group:
+§ Choose a launch template
+§ Configure settings
+§ Configure the load balancer (optional)
+§ Define the group size (min, max, desired)
+§ Scaling policies
+When group is created, all resources will be immediately provisioned!
+
+CLOUDFORMATION
+§ CloudFormation is the official infrastructure-as-code (IaC) software for
+Amazon Web Services. CloudFormation automates and orchestrates the
+creation, update, and deletion of any AWS resources. Also,
+CloudFormation allows fine-grained permissions and can roll back failed
+deployments.
+§ CloudFormation can be used to automate and orchestrate the creation,
+update, and deletion of AWS resources, based on scripts. This allows
+documenting the infrastructure, versioning and storage of the
+infrastructure as a set of text files, reproducibility across accounts and
+environments, and continuous deployment.
+
+CLOUDFORMATION
+The main components of CloudFormation are:
+§ Templates (declarative scripts defining what the infrastructure should
+be)
+§ Stacks (collections of templates that can be nested)
+§ Change Sets (help manage the changes to the CloudFormation
+stacks)
+
+CLOUDFORMATION EXAMPLE
+
+TERRAFORM
+
+AWS & TERRAFORM
+
+PIPELINES
+
+https://pipelines.devops.aws.dev
+
+https://www.cloudcraft.co
+
+ARCHITECTURE
+
+§ “Bad ideas in a datacenter are really bad ideas in the cloud. Done right,
+AWS will save you a 40% or more. Run your non prod workloads 8x5,
+autoscale production. Reserve predictable workloads. Move simple things
+to lambda or containers. Do that and you are good. Just forklift a bunch
+of idle VM's over and your costs will be out of control.”
+
+MAJOR MISTAKES COMPANIES CAN DO
+Mistake #1: Treat AWS as an outsourced data center
+Mistake #2: Maintain Established Architecture Patterns
+Mistake #3: Don’t Change the Development Process
+Mistake #4: Don’t Equip Your People with Cloud Skills
+
+AWS WELL-ARCHITECTED TOOL
+
+OPERATIONAL EXCELLENCE PILLAR
+§ The operational excellence pillar focuses on running and monitoring
+systems to deliver business value, and continually improving processes
+and procedures. Key topics include automating changes, responding to
+events, and defining standards to manage daily operations.
+
+SECURITY PILLAR
+§ The security pillar focuses on protecting information and systems. Key
+topics include confidentiality and integrity of data, identifying and
+managing who can do what with privilege management, protecting
+systems, and establishing controls to detect security events.
+
+RELIABILITY PILLAR
+§ The reliability pillar focuses on ensuring a workload performs its intended
+function correctly and consistently when it’s expected to. A resilient
+workload quickly recovers from failures to meet business and customer
+demand. Key topics include distributed system design, recovery planning,
+and how to handle change.
+
+PERFORMANCE EFFICIENCY PILLAR
+§ The performance efficiency pillar focuses on using IT and computing
+resources efficiently. Key topics include selecting the right resource types
+and sizes based on workload requirements, monitoring performance, and
+making informed decisions to maintain efficiency as business needs
+evolve.
+
+COST OPTIMIZATION PILLAR
+
+§ The cost optimization pillar focuses on avoiding unnecessary costs. Key
+topics include understanding and controlling where money is being spent,
+selecting the most appropriate and right number of resource types,
+analyzing spend over time, and scaling to meet business needs without
+overspending.
+
+LIFT & SHIFT?
+§ IaaS (rehost, replatform) - migrating your application and associated
+data to the cloud with minimal or no changes, where current VM size is
+matched to the closest instance type in the Cloud
+§ PaaS (refactor, rebuild) - involve significant effort in refactoring the
+application to fit into the platform offered by service provider.
+§ SaaS (replace) - is more about migrating from one application
+experience to another than it is about migrating to the cloud. All aspects,
+including access control, data management, security, etc., must be
+reconsidered and adapted to the constructs of the SaaS.
+
+FEASABILITY
+
+CLOUD STICKER SHOCK
+
+https://www.hashicorp.com/assets/1684971014-hashicorp-tlp_v2.pdf
+
+FEASABILITY
+
+https://dl.acm.org/doi/fullHtml/10.1145/3342103
+
+FEASABILITY AND COST CONTROL
+§ Cost explorer
+§ Trusted advisor
+§ AWS Budgets
+
+AWS COST EXPLORER
+
+AWS BUDGETS
+
+MULTICLOUD
+
+(NATIONAL)SECURITY
+
+Q: Did you participate in the PRISM program disclosed by
+Edward Snowden?
+A: No. When PRISM was reported we released a statement that
+said, “We provide customer data only when we receive a legally
+binding order or subpoena to do so, and never on a voluntary
+basis. In addition, we only ever comply with orders for requests
+about specific accounts or identifiers. If the government has a
+broader voluntary national security program to gather customer
+data we don’t participate in it.” Since issuing that statement, the
+Director of National Intelligence released clarifications that
+explained PRISM was not a voluntary program but rather an
+internal government computer system to process targeted data
+collected through valid legal orders.
+
+AWS DIGITAL SOVEREIGNTY PLEDGE
+
+Control over the location of your data
+
+Verifiable control over data access
+
+The ability to encrypt everything everywhere
+
+Resilience of the cloud
+
+GTFO CLOUD
+
+https://world.hey.com/dhh
+
+WHY ARE COMPANIES LEAVING THE CLOUD?
+
+§ What people are not aware of is that cloud costs more to run in the
+long run
+§ Cloud hosting has an advantage when it comes to unpredictable
+demand patterns, ensuring that even when there are unusually high
+data demands, your application can still run smoothly.
+§ However, when your business reaches a point of scalability where your
+data demands are predictable, the added cost provided by cloud
+providers for this flexibility does not become as justified
+
+TALLINNA TEHNIKAÜLIKOOL
+Ehitajate tee 5, 19086 Tallinn,
+Tel 620 2002 (E-R 8.30–17.00)
+taltech.ee
+
+
