@@ -1,0 +1,177 @@
+INTRODUCTION TO CLOUD TECHNOLOGIES
+(ICA0017)
+SIIM VENE
+
+Each region is a geographical area (usually a country), that consists at least
+2 Availability Zones (AZ)
+
+WHO IS RESPONSIBLE FOR WHAT?
+
+SECURITY IN THE CLOUD
+
+While AWS manages security of the cloud, security in
+the cloud is the responsibility of the customer.
+Customers retain control of what security they choose to
+implement to protect their own content, platform,
+applications, networks, systems, no differently than
+they would on their own on-site datacenter
+
+COURSE OVERVIEW
+
+§ 1. History, different service types (XaaS)
+§ 2. AWS, service portfolio, console, CLI, API
+§ 3. Compute services – EC2, serverless, containers
+§ 4. IAM services - users, groups, roles, governance
+§ 5. Storage services - S3, EBS, EFS, RDS
+§ 6. Network services - VPC, CDN
+§ 7. Logging, monitoring
+§ 8. Automation, feasibility
+
+AWS EC2
+
+Amazon Elastic Compute Cloud (Amazon EC2) is a web service
+that provides secure, resizable compute capacity in the cloud.
+It is designed to make web-scale cloud computing easier for
+developers. Amazon EC2's simple web service interface allows
+you to obtain and configure capacity with minimal friction.
+
+RELIABLE, SCALABLE, INFRASTRUCTURE ON DEMAND
+
+§ Increase or decrease capacity within minutes, not hours or days
+§ SLA commitment of 99.99% availability for each Amazon EC2 region.
+Each region consists of at least 3 availability zones
+§ The AWS Region/AZ model has been recognized by Gartner as the
+recommended approach for running enterprise applications that require
+high availability
+
+VAST BREADTH AND DEPTH OF COMPUTE SERVICES
+
+§ More workloads including SAP, HPC, Machine Learning, Windows, and
+many more run on AWS than on any other cloud
+§ 506 instance types to help optimize the cost and performance of your
+workloads
+§ Available with choice of processor, storage and networking options,
+operating system, and purchase model
+
+AMI – AMAZON MACHINE INSTANCE
+
+https://aws.amazon.com/ec2/instance-types/
+
+PAY FOR WHAT YOU (THINK) ARE USING
+
+NOT UNLIMITED EXPERIENCE
+
+SECURITY IS TOP PRIORITY
+
+§ Lockdown security model prohibits administrative access eliminating
+possibility of human error and tampering
+§ With the AWS Nitro System virtualization resources are offloaded to
+dedicated hardware and software minimizing the attack surface
+§ AWS supports 89 security standards and compliance certifications
+including PCI-DSS, HIPAA/HITECH, FedRAMP, GDPR, FIPS 140-2, and
+NIST 800-171, which is meaningfully more than any other cloud provider
+
+NITRO SYSTEM (HYPERVISOR, SEC.CHIP, CARDS)
+
+• The Nitro hypervisor is built on a minimized and modified Linux kernel
+• Launched in 2017, purpose-built hardware and software
+• KVM subsystem included (responsible for programming hardware
+virtualization features of the processor)
+• Not a general purpose operating system kernel
+• The Linux kernel portion of the Nitro hypervisor has no support for
+networking of any kind
+• Nitro hypervisor’s sole purposes: partitioning CPU and memory, assigning
+Nitro card virtual functions to instances, monitoring, metrics, and hardware
+error handling.
+
+NITRO SYSTEM (NITRO CARDS)
+
+•
+•
+•
+•
+
+VPC networking
+Amazon EBS
+Instance storage
+System controller
+
+AWS controls silicon, hardware and software,
+also pace of innovation
+
+https://www.awsgeek.com/AWS-re-Invent-2018/Evolution-of-the-EC2-Host/
+
+NITRO SYSTEM (NITRO CARDS)
+
+NITRO SYSTEM (SEC.CHIP)
+
+• Integrated into motherboard
+• Protects hardware resources
+• Hardware root of trust
+
+NITRO SYSTEM (NITRO CARDS)
+
+NITRO SYSTEM (NITRO CARDS)
+
+NITRO SYSTEM (NITRO CARDS)
+
+HARDENED SECURITY PRINCIPLES
+
+§ No AWS opetator access
+§ No initiated outbound communications
+§ Side-channel protections
+§ Fully automated CI/CD processes for change management
+
+NITRO SYSTEM (HYPERVISOR)
+
+• Lightweight hypervisor
+• Memory and CPU allocation
+• Bare metal-like performance
+
+FIRECRACKER
+
+§ Firecracker is an open source virtualization technology that is purposebuilt for creating and managing secure, multi-tenant container and
+function-based services.
+§ VMM (Virtual Machine Monitor) that uses KVM to create and manage VM’s
+§ Everything unnecessary excluded (reduced memory and attack surface)
+§ Supports Intel CPUs, with AMD and Arm support in developer preview
+
+https://www.youtube.com/watch?v=OdzaTbaQwTg&t=1366s
+
+https://github.com/nathanpeck/awesome-ecs - great collection of examples and materials
+
+https://www.aws.ps/aws-fargate-for-kubernetes-eks/
+
+https://www.aws.ps/aws-fargate-for-kubernetes-eks/
+
+AWS LAMBDA (SERVERLESS STUFF)
+
+Run code without thinking about servers.
+
+SAMPLE WEB PAGE ARCHITECTURE
+
+LAMBDA STEP FUNCTIONS
+
+REAL TIME FILE PROCESSING
+
+WEB APPLICATIONS
+
+IOT BACKENDS
+
+MOBILE BACKENDS
+
+DOWNSIDES (THINGS THAT ARE MORE DIFFICULT TO DO)
+
+§ Sharing dependencies (and configurations)
+§ Vendor lock
+§ Deployment (imagine git push lambda users/create master; git push
+lambda users/update master; …)
+§ Local testing
+§ No right way of doing things — the field is nascent
+
+TALLINNA TEHNIKAÜLIKOOL
+Ehitajate tee 5, 19086 Tallinn,
+Tel 620 2002 (E-R 8.30–17.00)
+taltech.ee
+
+

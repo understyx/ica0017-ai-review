@@ -1,0 +1,197 @@
+INTRODUCTION TO CLOUD TECHNOLOGIES
+(ICA0017)
+SIIM VENE
+
+INTRODUCTION TO CLOUD TECHNOLOGIES
+
+§ 3EAP
+§ 8 lectures
+§ To pass the course you must complete practical assignments with given
+(AWS) cloud provider
+§ .. and pass the exam in Moodle
+§ Passing the course will prepare for AWS Certified Cloud Practitioner
+certificate exam
+§
+
+but you still have to pay for the exam yourself approx. 100€
+
+WHAT WILL I LEARN FROM THIS COURSE?
+
+§ What is Cloud™
+§ How stuff works, what services can I use
+§ How to set up a cloud environment for your startup/company
+§ Pitfalls to avoid, cost models TCO etc
+§ Best practices regarding arhitecture
+
+PRACTICAL STUFF
+
+§ Course in Moodle
+§ https://moodle.taltech.ee/course/view.php?id=30710
+Student enrollment: pilwetehnoloogiad2024
+§ Lectures/practical assignments in Teams (everything will be recorded)
+§ Also check out IAAB Discord https://discord.gg/k3F29v4zCU
+
+LAB ASSIGNMENTS
+
+§ In total 6 practical assignments:
+§ From easy (create account, enable MFA, create privileges)
+§ To moderate (create VM, configure security groups)
+§ To difficult (design highly available web service using automated
+deployments and scaling)
+§ To optional advanced (GitOps style automated deployments)
+§ Previous assignments lay the foundation to the latter ones!
+
+THE BOOK
+
+Cloud Services For Dummies®, IBM Limited Edition
+ISBN: 978-1-118-33891-9 (pbk) 978-1-118-34012-7 (ebk)
+Cloud Computing: Concepts, Technology & Architecture (The
+Prentice Hall Service Technology Series from Thomas Erl)
+ISBN-13: 978-0133387520
+
+Accessible from oreilly.com library
+(TalTech students have free access)
+
+TALLINNA TEHNIKAÜLIKOOL
+
+COURSE OVERVIEW
+
+§ 1. History, different service types (XaaS)
+§ 2. AWS, service portfolio, console, CLI, API
+§ 3. Compute services – EC2, serverless, containers
+§ 4. IAM services - users, groups, roles, governance
+§ 5. Storage services - S3, EBS, EFS, RDS
+§ 6. Network services - VPC, CDN
+§ 7. Logging, monitoring
+§ 8. Automation, feasibility
+
+"As of now, computer networks are still in
+their infancy". But as they grow up and
+become more sophisticated, we will
+probably see the spread of 'computer
+utilities' which, like present electric and
+telephone utilities, will service individual
+homes and offices across the country."
+1969 L. Kleinrock
+
+Cloud computing is the on-demand
+delivery of compute power, database
+storage, applications, and other IT
+resources through a cloud services
+platform via the Internet with pay-as-yougo pricing.
+
+Overview of AWS services
+
+Worldwide Spending on Public
+Cloud Services is Forecast to
+Reach $1.35 Trillion in 2027,
+According to New IDC Spending
+Guide
+
+CLOUD ENABLERS
+
+VIRTUALIZATION
+
+VIRTUALIZATION
+
+Virtualiza)on is so.ware that manipulates hardware
+and provides a layer to present a consistent
+interface;
+whereas cloud compu)ng is a service / collec)on of
+services that runs on top of that layer (i.e., on the
+virtual machine)
+
+Cloud providers
+
+Amazon Web Services
+Microsoft Azure
+
+Google Cloud Platform
+Alibaba Cloud
+IBM Cloud
+Oracle Cloud Infrastructure
+
+TYPES OF CLOUD COMPUTING
+
+§ Infrastructure as a Service – IaaS
+§ Platform as a Service – PaaS
+§ Software as a Service - SaaS
+
+Service provider manages the datacenters and
+virtualization platform.
+You are responsible for installing and maintaining servers
+(either virtual or physical)
+
+Service provider manages the underlying infrastructure and
+operating systems, security, patching, updates,
+maintenance.
+You focus on the software (middleware, databases)
+
+Example of Gmail – all you manage is your inbox or the
+software and nothing else
+Google takes care of the DC’s, servers, networks, storage,
+staffing, maintenance, incidents etc
+
+hBps://m.oursky.com/saas-paas-and-iaas-explained-in-one-graphic
+
+TYPES OF CLOUD DEPLOYMENT
+
+§ Public cloud – AWS, Azure, GCP
+§ Hybrid cloud – Mixture of public and private clouds
+§ Private cloud – On premises (own datacenter)
+
+6 ADVANTAGES OF CLOUD
+
+§ Trade capital expense to variable expense
+§ Benefit from massive economies of scale
+§ Stop guessing about capacity
+§ Increase speed and agility
+§ Stop spending money on running and maintaining DC’s
+§ Go global in minutes
+
+1 – TRADE CAPEX FOR VARIABLE EXPENSE
+
+Instead of having to invest a lot up to DC’s and
+hardware before you know how you will end up using
+them, you can pay for only when you use compute
+resources and you pay for how much you consume
+
+2 – BENEFIT FROM MASSIVE ECONOMIES OF SCALE
+
+When was the last time Intel made a CPU specifically
+for you?
+
+3 – STOP GUESSING ABOUT CAPACITY
+
+You do not know usually, where you end up, meaning
+either buying too much or too little. If too much, then
+you wasted resources or money, and if too little, you can
+not offer competitive service. Cloud can scale with the
+changing business needs
+
+4 – INCREASE SPEED AND AGILITY
+
+You can deploy your platform within hours or days, using
+modern architecture principles. That scales infinitely with
+demand.
+Otherwise you must procure servers and rent DC space
+and install everything
+
+5 – STOP SPENDING MONEY RUNNING AND MAINTAINING DC’S
+
+Focus on your core business or what you are good at,
+not at managing facilities. Let someone else do that for
+you.
+
+6 – GO GLOBAL IN MINUTES
+
+Easily deploy your application or service in multiple
+locations around the world. This means low latency and
+better experience for your customers at minimal cost
+
+TALLINNA TEHNIKAÜLIKOOL
+Ehitajate tee 5, 19086 Tallinn,
+Tel 620 2002 (E-R 8.30–17.00)
+taltech.ee
+
+

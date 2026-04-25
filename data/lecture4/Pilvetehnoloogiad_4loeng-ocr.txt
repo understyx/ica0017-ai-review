@@ -1,0 +1,484 @@
+INTRODUCTION TO CLOUD TECHNOLOGIES
+(ICA0017)
+SIIM VENE
+
+https://github.com/nathanpeck/awesome-ecs - great collection of examples and materials
+
+AWS LAMBDA (SERVERLESS STUFF)
+
+Run code without thinking about servers.
+
+COURSE OVERVIEW
+§ 1. History, different service types (XaaS)
+§ 2. AWS, service portfolio, console, CLI, API
+§ 3. Compute services – EC2, serverless, containers
+§ 4. IAM services - users, groups, roles, governance
+§ 5. Storage services - S3, EBS, EFS, RDS
+§ 6. Network services - VPC, CDN
+§ 7. Logging, monitoring
+§ 8. Automation, feasibility
+
+§ What is IAM?
+§ IAM concepts
+§ Common use cases
+§ Governance model
+
+IAM is an Identity and Access Management web
+service, that enables AWS customers to manage
+users and their permissions AWS.
+The service is targeted for use with AWS products
+With IAM you can centrally manage users, and
+permissions that control which AWS resource user
+can access
+
+IAM
+
+§ Centralized control of your AWS account
+§ Shared access to your AWS account
+§ Granular permissions
+§ Identity federation (including AzureAD, Facebook,
+Linkedin etc)
+§ Multifactor authentication
+§ Provide temporary access for users/devices and
+services where necessary
+§ Integrates with many different AWS services
+§ Not just identity management, also permissions
+management (PAM)
+§ Basic IAM is easy, but gets complicated fast
+
+IAM TERMINOLOGY
+§ Users – End users such as people, employees, consultants etc
+§ Groups – a collection of users. Each user in group will inherit the
+permissions of the group
+§ Policies – documents in JSON format that describe, what permissions
+user/group/role can do
+§ Role – identity with permissions policy
+
+IAM
+§ IAM is universal – does not require region selection, when you create a
+user or a group, this is created globally
+§ Enables you to control, who can do what in your AWS account
+§ Uses familiar control concepts:
+USER
+GROUP
+POLICY
+ROLE
+
+Source: https://www.slideshare.net/AmazonWebServices/introduction-tothree-aws-security-services-november-2016-webinar-series
+
+AUTHENTICATION
+§ A principal must be authenticated (signed in to AWS) using their
+credentials to send a request to AWS. Some services, such as
+Amazon S3 allow a few requests from anonymous users. However,
+they are the exception to the rule.
+§ To authenticate from the console as a root user, you must sign in
+with your email address and password.
+§ As an IAM user, provide your account ID, and then your
+username and password.
+§ To authenticate from the API or AWS CLI, you must provide your
+access key and secret key.
+§ You might also be required to provide additional security
+information, such as multi-factor authentication (MFA) to increase
+the security of your account.
+
+AUTHORIZATION
+
+§ You must also be authorized (allowed) to complete
+your request. During authorization, AWS uses values
+from the request context to check for policies that
+apply to the request. It then uses the policies to
+determine whether to allow or deny the request. Most
+policies are stored in AWS as JSON documents and
+specify the permissions for user accounts.
+
+IAM USER
+§ Entity that represents the person or service that uses it to interact
+with AWS
+§ Enable human or programmatic access to AWS resources and
+services
+§ Consists of a name and unique set of credentials:
+§ Console password
+§ Access key
+§ MFA/2FA
+§ Each IAM user is associated with only one AWS account, does not
+require a separate payment method
+
+FIRST-TIME ACCESS ONLY: YOUR ROOT USER CREDENTIALS
+
+§ When you create an AWS account, you create an AWS
+account root user identity, which you use to sign into
+AWS.
+§ You can sign into the AWS Management Console using
+this root user identity—that is, the email address and
+password that you provided when creating the
+account. This combination of your email address and
+password is also called your root user credentials.
+
+FIRST-TIME ACCESS ONLY: YOUR ROOT USER CREDENTIALS
+
+§ When you use your root user credentials, you have
+complete, unrestricted access to all resources in your
+AWS account, including access to your billing
+information and the ability to change your password.
+This level of access is necessary when you first set up
+your account.
+§ Don't use root user credentials for everyday access.
+We especially recommend that you do not share your
+root user credentials with anyone, because doing so
+gives them unrestricted access to your account. It is
+not possible to restrict the permissions that are
+granted to the root user.
+
+2FA
+§ Two-factor authentication (also known as 2FA) is a type, or subset, of
+multi-factor authentication. It is a method of confirming users' claimed
+identities by using a combination of two different factors:
+§ 1) Knowledge (something they know),
+§ 2) Possession (something they have),
+§ 3) Inherence (something they are).
+
+https://en.wikipedia.org/wiki/Multi-factor_authentication
+
+2FA METHODS
+§ SMS
+§ Time-based One-time Passwords (TOTP)
+§ e.g. Google Authenticator, Authy
+§ Push notifications
+§ e.g. Google Prompt
+§ Universal 2nd Factor (U2F)
+§ e.g. USB security keys (UbiKey)
+
+Native AWS 2FA uses TOTP
+
+https://en.wikipedia.org/wiki/Multi-factor_authentication
+
+IAM USER
+
+§ Benefits:
+
+§ What you should do:
+
+§ Unique set of
+credentials
+
+§ Create IAM user for yourself
+(DO NOT USE ROOT ACCOUNT!)
+
+§ Individual permissions
+§ Granular control
+§ Easy to revoke access
+
+§ Create individual IAM user for
+everyone (DO NOT SHARE
+ACCOUNTS!)
+
+§ What you should not do:
+§ DO NOT USE/SHARE ROOT ACCOUNT!
+§ DO NOT SHARE ACCOUNTS!
+
+https://www.theregister.com/2021/04/01/ubiquiti_data_breach/
+
+IAM USER
+
+§ The “root account” is the account that is created
+when you first set up your AWS account. Complete
+access over all resources.
+§ New Users DO NOT have any rights when created
+§ Permissions specify, who has access to AWS resources
+and what actions they can perform with these
+resources
+§ Use IAM Policies to assign persmissions
+
+IAM GROUPS
+
+A group is simply a place to store
+your users. Users will inherit all
+permissions (and restrictions) that
+the group has
+A group is a collection of IAM users
+Specify and manage permissions for
+multiple users centrally
+A group can contain many users, and
+user can belong to many groups
+
+Root
+account
+
+Group:
+Admins
+
+Group:
+Developers
+
+Group:
+DevOps
+
+Bob
+
+Jim
+
+App X
+
+Susan
+
+Kevin
+
+Logging
+Account
+
+Allan
+
+IAM GROUPS
+
+§ Reduces complexity of access management as number
+of users grows
+§ Easy to reassign permissions based on change in
+responsibility
+§ Easy way to update permissions for multiple users
+§ Reduces the opportunity for a user to accidentally get
+excessive access
+§ Reduces the blast radius when systems get
+compromised
+
+IAM GROUPS
+
+§ Create groups that relate to job functions
+§ Attach policies to groups
+§ Use managed policies to logically manage permissions
+§ Manage group membership to assign permissions
+
+IAM POLICIES
+§ While you can, you shouldn’t attach policies to users.
+§ Instead put users in groups, assign roles to groups, and policies to roles
+
+Level 100: Basic Identity and Access Management User, Group, Role: Lab Guide
+
+IAM POLICIES
+§ Contain a permissions
+§ An explicit deny in any policy overrides any allows.
+§ Who
+
+Siim
+
+§ What actions
+
+Can GET objects in S3
+
+§ Which AWS resources
+
+Bucket = “eeitkbucket”
+
+§ When
+
+Until 01.01.2020
+
+§ Where
+
+From IP range 192.168.001.001
+
+§ How
+
+Only if using MFA
+
+Identity-based permissions – attach policy to user, group or role
+Resource-based permissions – attach policy to select resources e.g. S3
+
+POLICY JSON
+{
+"Version": "2012-10-17",
+"Statement": [
+{
+"Sid": "VisualEditor0",
+"Effect": "Allow",
+"Action": [
+"s3:GetObject"
+],
+"Resource": "arn:aws:s3:::eeitkbucket"
+}
+]
+}
+
+IAM ROLES
+§ Another identity with permission policies that determine, what the
+identity can and cannot do in AWS
+§ Can be assumed by anyone who needs it; not uniquely associated with
+one person or application
+§ Does not have credentials; access keys are created and provided
+dynamically
+§ Can provide cross-account access, access within an account, access to
+identities defined outside of AWS
+
+IAM ROLES
+§ Secure way to grant permissions to entities you trust
+§ Much more secure than using access key ID’s and secret access keys,
+also easier to manage
+§ Roles are universal – you do not need to specify what region they are in
+§ Examples:
+§ IAM user in another account
+§ Application code running on an EC2 that needs access to AWS
+database service
+§ Users from corporate directory who use identity federation with SAML
+§ IAM roles issue keys that are valid for short durations, making them a
+more secure way to grant access
+
+IAM ROLES
+§ Role assumption is a mechanism mainly used for cross-account access
+and functionality
+§ You can authenticate user first that has no permissions at all, then
+assume a role inside AWS account that has specific permissions (e.g.
+user user_siim can not stop EC2 instance, it can assume role
+admin_siim, that is allowed to do that)
+§ All cross-account accesses are done by using temporary tokens
+§ Assumed roles are meant to be always temporary and do not have the
+same scope as an actual user
+
+IAM ROLES
+§ No need to share security credentials
+§ No need to store long-term credentials
+§ Control who has access
+
+Example EC2 instance:
+• Easy to manage access keys
+• Automatic key rotation
+• AWS SDK/CLI fully integrated
+
+Source: https://aws.amazon.com/events/events-content/
+
+SHORT RECAP:
+
+Level 100: Basic Identity and Access Management User, Group, Role: Lab Guide
+
+AWS ORGANIZATIONS
+
+Conway’s Law:
+Organizations which design systems
+…
+Are constrained to produce designs which are copies
+Of the communication structure of these organizations
+
+AWS ORGANIZATIONS – AWS ACCOUNT CREATION IS EASY
+
+© Mazouz Shana
+
+AWS ORGANIZATIONS - AWS ACCOUNT MANAGEMENT IS HARD
+
+© James Lin
+
+AWS ORGANIZATIONS
+
+Many teams
+
+Isolation
+
+Billing
+
+Security / compliance
+controls
+
+Business process
+
+AWS ORGANIZATIONS
+§ AWS Organizations is an account management service that enables
+consolidating multiple AWS accounts into an organization that can be
+created and centrally managed.
+§ AWS Organizations includes consolidated billing and account
+management capabilities that enable one to better meet the budgetary,
+security, and compliance needs of your business.
+§ As an administrator of an organization, new accounts can be created in
+an organization and invite existing accounts to join the organization.
+§ AWS Organizations enables you to
+§ Centrally manage policies across multiple AWS accounts
+§ Control access to AWS services
+§ Automate AWS account creation and management
+§ Consolidate billing across multiple AWS accounts
+
+Source: https://jayendrapatil.com/aws-organizations/
+
+ORGANIZATIONAL UNIT (OU)
+§ Grouping of AWS accounts
+§ Service control policies to the groups
+§ User permission grouping (NOT corporate structure)
+
+LANDING ZONE
+§ A landing zone is a well-architected, multi-account AWS environment that is scalable and
+secure. This is a starting point from which your organization can quickly launch and deploy
+workloads and applications with confidence in your security and infrastructure
+environment.
+§ Building a landing zone involves technical and business decisions to be made across
+account structure, networking, security, and access management in accordance with your
+organization’s growth and business goals for the future.
+
+LANDING ZONE
+• Does your business require administrative isolation between workloads?
+• Does your business require limited visibility and discoverability of workloads?
+• Does your business require isolation to minimize the scope of impact?
+• Does your business require strong isolation of recovery and/or auditing data?
+
+CONTROL TOWER
+§ Automates the setup of a new landing zone using best practices, blueprints for identity,
+federated access, and account structure. Some of the blueprints implemented on AWS
+Control Tower include:
+• A multi-account environment using AWS Organizations
+• Cross-account security audits using AWS Identity and Access Management (IAM) and AWS
+IAM Identity Center
+• Identity management using the Identity Center default directory
+• Centralized logging from AWS CloudTrail, and AWS Config stored in Amazon Simple Storage
+Service (Amazon S3)
+
+ORGANIZATION (SERVICE) CONTROL POLICIES
+
+§ Enables you to control which AWS service API’s are
+accessible by whitelisting / blacklisting list of API’s
+§ Control policies are applied and invisible to all users in
+the child account, including root account
+
+GUARDRAILS
+§ High-level rules that provide ongoing governance for your overall AWS environment.
+Guardrails can be both preventive or detective. Preventive guardrails are implemented
+using service control policies (SCPs), which are a part of AWS Organizations. Detective
+guardrails are implemented using AWS Config Rules and AWS Lambda functions. Examples
+of AWS Control Tower guardrails include:
+• Disallow creation of access keys for the root user
+• Disallow internet connection through RDP
+• Disallow public write access to S3 buckets
+• Disallow Amazon Elastic Block Store (Amazon EBS) volumes that are unattached to an
+Amazon Elastic Compute Cloud (Amazon EC2) instance
+
+AWS re:invent - SEC325 Architecting security & governance across your landing zone
+
+AWS re:invent - SEC325 Architecting security & governance across your landing zone
+
+AWS re:invent - SEC325 Architecting security & governance across your landing zone
+
+AWS re:invent - SEC325 Architecting security & governance across your landing zone
+
+AWS re:invent - SEC325 Architecting security & governance across your landing zone
+
+AWS re:invent - SEC325 Architecting security & governance across your landing zone
+
+AWS re:invent - SEC325 Architecting security & governance across your landing zone
+
+AWS re:invent - SEC325 Architecting security & governance across your landing zone
+
+AWS re:invent - SEC325 Architecting security & governance across your landing zone
+
+AWS re:invent - SEC325 Architecting security & governance across your landing zone
+
+AWS re:invent - SEC325 Architecting security & governance across your landing zone
+
+AWS re:invent - SEC325 Architecting security & governance across your landing zone
+
+AWS ORGANIZATIONS – AWS ACCOUNT CREATION IS EASY
+
+© Mazouz Shana
+
+AWS ORGANIZATIONS - AWS ACCOUNT MANAGEMENT IS HARD
+
+© James Lin
+
+TALLINNA TEHNIKAÜLIKOOL
+Ehitajate tee 5, 19086 Tallinn,
+Tel 620 2002 (E-R 8.30–17.00)
+taltech.ee
+
+

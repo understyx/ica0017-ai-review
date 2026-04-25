@@ -1,0 +1,468 @@
+INTRODUCTION TO CLOUD TECHNOLOGIES
+(ICA0017)
+SIIM VENE
+
+COMPARISON CHART
+S3
+
+EBS
+
+EFS
+
+Highly scalable,
+avaialble, durable
+
+High performance
+
+Highly scalable,
+avaialble, durable
+
+Size scales
+
+Has limited size
+
+Size scales
+
+Data can be stored and
+retreived from Web
+interface
+
+EBS needs to be
+mounted to EC2 to store
+and retreive
+
+Data can be stored and
+retreived from Web
+interface and AWS
+services
+
+No software can be
+installed
+
+Software and OS can be
+installed
+
+Software can me
+installed (no OS)
+
+Lower than EBS and EFS
+
+Fastest
+
+Faster than S3, slower
+than EBS
+
+Price per GB/month
+$0.023
+
+Price per GB/month
+$0.10 (also pay for
+unused capacity)
+
+Price per GB/month
+$0.30
+
+AWS RDS
+
+COURSE OVERVIEW
+§ 1. History, different service types (XaaS)
+§ 2. AWS, service portfolio, console, CLI, API
+§ 3. Compute services – EC2, serverless, containers
+§ 4. IAM services - users, groups, roles, governance
+§ 5. Storage services - S3, EBS, EFS, RDS
+§ 6. Network services - VPC, ELB, CDN
+§ 7. Logging, monitoring
+§ 8. Automation, feasibility
+
+NETWORKING IN AWS
+§ Get familiar with VPC topics
+§ Walk through basic VPC setup
+§ Understand the options of connectivity
+§ Between VPC’s
+§ To your own (corporate) network
+§ To AWS services
+§ ELB
+§ CDN
+
+VPC
+Virtual Private Cloud
+Exists within a region
+Logically isolated section of AWS Cloud
+You can control IP address range, subnets, routing and firewalling
+Both IPv4 and IPv6 supported
+
+5 THINGS REQUIRED FOR INTERNET ACCESS
+§ Public IP address
+§ Internet gateway attached to VPC
+§ Route to an interenet gateway
+§ NACL Allow rule
+§ Security group Allow rule
+
+STEPS TO CREATE A VPC
+
+VPC
+Choosing an
+address range
+
+172.16.0.0
+172.16.1.0
+172.16.2.0
+
+Create subnets in
+Availability Zones
+
+Create route
+to the internet
+
+Authorize traffic
+to/from the VPC
+
+VPC
+
+§ CIDR notation review
+§ 172.31.0.0/16
+§ Use private address ranges
+
+Choosing an
+address range
+
+Avoid ranges, that overlap with other
+networks that you might connect
+
+VPC
+
+172.31.0.0/16
+
+Create subnets in
+Availability Zones
+
+eu-west-1a
+
+eu-west-1b
+
+eu-west-1c
+
+172.31.0.0/24
+
+172.31.1.0/24
+
+172.31.2.0/24
+
+VPC subnet
+
+VPC subnet
+
+VPC subnet
+
+Availability Zone
+
+Availability Zone
+
+Availability Zone
+
+VPC AND SUBNET RECOMMENDATIONS
+§ /16 VPC – (65 536 addresses)
+§ At least /24 subnets (254 addresses)
+§ Use multiple AZ’s per VPC through multiple subnets
+
+IPv6 IN YOUR VPC
+§ Can have a dual stack VPC by adding IPv6 CIDR
+§ Fixed sizes for VPC and subnets:
+§ /56 VPC (4,772,366,482,869,645,213,696 addresses)
+§ /64 subnets (18,446,744,073,709,551616 addresses)
+
+VPC
+
+172.31.0.0/16
+
+2600:1f16:14d:6300::/56
+eu-west-1a
+
+eu-west-1b
+
+eu-west-1c
+
+172.31.0.0/24
+
+172.31.1.0/24
+
+172.31.2.0/24
+
+2600:1f16:14d:6300::/64
+
+2600:1f16:14d:6301::/64
+
+2600:1f16:14d:6302::/64
+
+VPC subnet
+
+VPC subnet
+
+VPC subnet
+
+Availability Zone
+
+Availability Zone
+
+Availability Zone
+
+§ Route tables contain rules fow which packets go where
+§ VPC has a default route table
+§ You can assign different route tables to different subnets
+172.16.0.0
+172.16.1.0
+172.16.2.0
+
+Create route
+to the internet
+
+VPC
+
+eu-west-1a
+
+Stateless NAT
+
+eu-west-1b
+
+eu-west-1c
+
+172.31.0.0/16
+172.31.0.0/24
+
+172.31.1.0/24
+
+172.31.2.0/24
+
+Private IP: 172.31.0.10
+Public IP: 54.56.10.8
+
+Private IP: 172.31.1.20
+Public IP: 52.56.251.70
+
+Private IP: 172.31.2.30
+Public IP: 64.76.100.81
+
+VPC subnet
+
+VPC subnet
+
+VPC subnet
+
+Availability Zone
+
+Availability Zone
+
+Availability Zone
+
+NETWORK SECURITY
+§ Network ACL’s
+§ Security groups
+
+SG VS ACL
+
+Security group
+
+Network ACL
+
+Operates at the instance level
+
+Operates at the subnet level
+
+Applies to an instance only if it is associated
+with the instance
+
+Applies to all instances deployed in the
+associated subnet (providing an additional
+layer of defense if security group rules are
+too permissive)
+
+Supports allow rules only
+
+Supports allow rules and deny rules
+
+Evaluates all rules before deciding whether to
+allow traffic
+
+Evaluates rules in order, starting with the
+lowest numbered rule, when deciding
+whether to allow traffic
+
+Stateful: Return traffic is allowed, regardless
+of the rules
+
+Stateless: Return traffic must be explicitly
+allowed by the rules
+
+SG VS ACL
+
+NETWORK ACL
+
+§ By default, AWS assigns ACL’s to VPC that allow any traffic inbound and
+outbound
+§ ACL’s will be processed similarily to FW rules – from the top to bottom
+
+SECURITY GROUPS (SG)
+• You can specify allow rules, but not deny rules.
+• When you first create a security group, it has no inbound rules. Therefore, no inbound
+traffic is allowed until you add inbound rules to the security group.
+• When you first create a security group, it has an outbound rule that allows all outbound
+traffic from the resource. If your security group has no outbound rules, no outbound traffic
+is allowed.
+• When you associate multiple security groups with a resource, the rules from each security
+group are aggregated to form a single set of rules that are used to determine whether to
+allow access.
+• When you add, update, or remove rules, your changes are automatically applied to all
+resources associated with the security group.
+
+SECURITY GROUPS (SG)
+• Protocol: The protocol to allow. The most common protocols are 6 (TCP), 17 (UDP), and 1
+(ICMP).
+• Port range: For TCP, UDP, or a custom protocol, the range of ports to allow. You can specify
+a single port number (for example, 22), or range of port numbers (for example, 7000-8000).
+• ICMP type and code: For ICMP, the ICMP type and code. For example, use type 8 for ICMP
+Echo Request or type 128 for ICMPv6 Echo Request.
+• Source or destination: The source (inbound rules) or destination (outbound rules) for the
+traffic to allow. Specify a single IPv4 or IPv6 address or range.
+
+VPC CONNECTIVITY OPTIONS
+
+Restricting
+internet access
+
+Connectivity to
+other VPC’s
+
+Connecting to your
+corporate network
+
+§ Security groups
+§ Follow the principle of least privilege
+§ VPC allows both ingress ang egress security group rules
+
+Authorize traffic
+to/from the VPC
+
+c
+ffi
+a
+tr 0
+b
+/
+w e .0 .0
+w 0
+lo 0 .
+l
+A om
+fr
+
+VPC
+MyWebServers security group
+
+Allow only MyWebServers
+
+MyDBServers security group
+
+VPCPC CONNECTIVITY OPTIONS
+
+Restricting
+internet access
+
+Connectivity to
+other VPC’s
+
+Connecting to your
+corporate network
+
+VPCPC CONNECTIVITY OPTIONS
+
+Restricting
+internet access
+
+Connectivity to
+other VPC’s
+
+Connecting to your
+corporate network
+
+CONNECTING TO ON-PREMISES NETWORKS
+§ AWS VPN
+§ AWS Direct Connect
+
+ELB – (ELASTIC LOAD BALANCER)
+
+The load balancer serves as a single point of contact for all the instance.
+
+ELB – Elastic Load Balancer*
+ALB – Application Load Balancer
+NLB – Network Load Balancer
+
+ELB – ELASTIC LOAD BALANCER
+§ Introduced in 2009
+§ Think of it as a Nginx or HAProxy
+§ Works on L4 (TCP) and L7 (HTTP)
+§ Isn’t compatible with EKS containers running on Fargate
+§ Can’t forward traffic on more than one port per instance
+§ Doesn’t support forwarding to IP addresses
+
+ALB / NLB
+In 2016, AWS launched its Elastic Load Balancing version 2, which is made
+up of two offers: Application Load Balancer (ALB) and Network Load
+Balancer (NLB).
+Both ALB and NLB can forward traffic to IP addresses, which allows them to
+have targets outside the AWS Cloud (for example: on-premises servers or
+instances hosted on another cloud provider).
+
+APPLICATION LOAD BALANCER
+§ Only works at layer 7 (HTTP)
+§ Supports HTTP/2 and websockets
+§ Can route requests to many ports on a single target
+§ Can route requests to Lambda functions
+§ Can be configured to return a fixed response or a redirection
+§ Supports user authentication via OIDC, SAML, LDAP, Microsoft AD, also
+Facebook and Google.
+
+NETWORK LOAD BALANCER
+§ Works at layer 4 only and can handle both TCP and UDP, as well as TCP
+connections encrypted with TLS
+§ Main feature - has a very high performance
+§ Uses static IP addresses and can be assigned Elastic IPs—not possible
+with ALB and ELB
+§ Natively preserves the source IP address in TCP/UDP packets;
+
+https://aws.amazon.com/blogs/networking-and-content-delivery/how-to-securelypublish-internet-applications-at-scale-using-application-load-balancer-and-aws-privatelink
+
+CLOUDFRONT
+
+CLOUDFRONT
+§ Network of Edge Locations
+§ Caches content
+§ Route53
+§ AWS WAF
+§ AWS Shield
+
+Edge Location ≠ Availability Zone
+
+--- PING www.ee (194.106.111.42) 56(84) bytes of data. --64 bytes from 194.106.111.42: icmp_seq=1 ttl=56 time=42.1 ms
+64 bytes from 194.106.111.42: icmp_seq=2 ttl=56 time=42.1 ms
+64 bytes from 194.106.111.42: icmp_seq=3 ttl=56 time=42.1 ms
+64 bytes from 194.106.111.42: icmp_seq=4 ttl=56 time=42.1 ms
+--- PING mixi.jp (18.177.101.186) 56(84) bytes of data. --64 bytes from 18.177.101.186: icmp_seq=1 ttl=231 time=252 ms
+64 bytes from 18.177.101.186: icmp_seq=2 ttl=231 time=252 ms
+64 bytes from 18.177.101.186: icmp_seq=3 ttl=231 time=252 ms
+64 bytes from 18.177.101.186: icmp_seq=4 ttl=231 time=252 ms
+
+--- PING europa.eu(2a01:7080:24:100::666:45) 56 data bytes --64 bytes from 2a01:7080:24:100::666:45: icmp_seq=1 ttl=55 time=10.7 ms
+64 bytes from 2a01:7080:24:100::666:45: icmp_seq=2 ttl=55 time=10.6 ms
+64 bytes from 2a01:7080:24:100::666:45: icmp_seq=3 ttl=55 time=10.7 ms
+64 bytes from 2a01:7080:24:100::666:45: icmp_seq=4 ttl=55 time=10.6 ms
+
+§ Security – WAF, Route53 (DDoS etc)
+§ Default TTL – 1 day
+§ Reporting & analytics
+
+TALLINNA TEHNIKAÜLIKOOL
+Ehitajate tee 5, 19086 Tallinn,
+Tel 620 2002 (E-R 8.30–17.00)
+taltech.ee
+
+
