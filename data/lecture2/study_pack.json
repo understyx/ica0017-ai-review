@@ -1,0 +1,49 @@
+{
+  "title": "AWS Service Portfolio, Console, CLI, API - Study Pack",
+  "outline": [
+    "1. **Introduction to AWS**",
+    "- Overview of AWS ecosystem.",
+    "- Global Infrastructure: Regions and Availability Zones (AZs).",
+    "2. **Interacting with AWS**",
+    "- AWS Management Console (Web interface).",
+    "- AWS Command Line Interface (CLI).",
+    "- Application Programming Interfaces (APIs).",
+    "3. **Shared Responsibility Model**",
+    "- Security *of* the Cloud (AWS responsibility).",
+    "- Security *in* the Cloud (Customer responsibility)."
+  ],
+  "notes": [
+    "AWS provides a massive ecosystem of cloud services spanning compute, storage, networking, database, analytics, and more.",
+    "**Regions:** Geographical areas that host AWS infrastructure (e.g., eu-west-1). Choosing the right region minimizes latency and ensures compliance.",
+    "**Availability Zones (AZs):** Distinct locations within a region that are engineered to be isolated from failures in other AZs. Every region has at least 2 AZs.",
+    "**Shared Responsibility Model:** AWS secures the underlying infrastructure (hardware, host OS, physical security), while the customer is responsible for guest OS patching, data encryption, and configuring firewalls."
+  ],
+  "recall_questions": [
+    "1. What is an AWS Region?",
+    "2. What is an Availability Zone (AZ), and how many are typically in a region?",
+    "3. What are the three main ways to interact with AWS services?",
+    "4. Under the Shared Responsibility Model, who is responsible for physical datacenter security?",
+    "5. Who is responsible for encrypting data stored in an S3 bucket?"
+  ],
+  "flashcards": [
+    "**Q:** What is an AWS Region?\n**A:** A physical geographical location where AWS clusters data centers.",
+    "**Q:** What is an Availability Zone (AZ)?\n**A:** One or more discrete data centers with redundant power, networking, and connectivity within an AWS Region.",
+    "**Q:** Security 'of' the Cloud vs Security 'in' the Cloud?\n**A:** 'Of' = AWS (hardware/infrastructure); 'In' = Customer (data/apps/OS configuration)."
+  ],
+  "crammer": [
+    "*   **AWS Global Infrastructure:** Built around Regions and AZs. AZs provide fault tolerance.",
+    "*   **Interactions:** Console (UI), CLI (commands), SDK/API (code).",
+    "*   **Security:** Memorize the Shared Responsibility Model. If you can configure it, it's your responsibility."
+  ],
+  "traps": [
+    "1. **Confusing Regions and AZs:** Remember, an AZ is inside a Region. You deploy to a Region, and replicate across AZs.",
+    "2. **Assuming AWS does all security:** AWS won't patch your EC2 instances or configure your security groups securely by default."
+  ],
+  "extended_quiz": [
+    "1. Explain the difference between AWS Console, CLI, and API.",
+    "2. Give a scenario where you would use the CLI over the Console.",
+    "3. Why would an organization choose a specific AWS Region?",
+    "4. How does multi-AZ deployment improve availability?",
+    "5. List three examples of customer responsibilities in the Shared Responsibility Model."
+  ]
+}

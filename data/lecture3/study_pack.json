@@ -1,0 +1,52 @@
+{
+  "title": "IAM Services: Users, Groups, Roles - Study Pack",
+  "outline": [
+    "1. **Introduction to IAM**",
+    "- Identity and Access Management.",
+    "- Global service (does not require region selection).",
+    "2. **Core IAM Concepts**",
+    "- Users, Groups, Policies, Roles.",
+    "3. **Best Practices**",
+    "- Principle of Least Privilege.",
+    "- MFA (Multi-Factor Authentication).",
+    "4. **AWS Organizations**",
+    "- Managing multiple AWS accounts."
+  ],
+  "notes": [
+    "**IAM (Identity and Access Management)** enables you to manage access to AWS services and resources securely.",
+    "**IAM is Global:** When you create a user, they exist across all regions.",
+    "**Users:** End-users or service accounts. Best practice is to avoid using the root user for everyday tasks.",
+    "**Groups:** Collections of users. Policies attached to a group apply to all users in the group.",
+    "**Policies:** JSON documents that define permissions (Allow/Deny actions on resources).",
+    "**Roles:** Assumable identities with temporary credentials. Used for EC2 instances, cross-account access, and federation.",
+    "**Least Privilege:** Always grant only the permissions required to perform a task, and nothing more."
+  ],
+  "recall_questions": [
+    "1. Is IAM a regional or global service?",
+    "2. What is the Principle of Least Privilege?",
+    "3. What is an IAM Role typically used for?",
+    "4. Why should you avoid using the root account?",
+    "5. What format are IAM Policies written in?"
+  ],
+  "flashcards": [
+    "**Q:** IAM Users vs IAM Roles?\n**A:** Users have long-term credentials (passwords/keys). Roles use short-term temporary credentials and are assumed by entities.",
+    "**Q:** What is the Principle of Least Privilege?\n**A:** Giving a user only the minimum permissions necessary to do their job.",
+    "**Q:** IAM Policy Format?\n**A:** JSON."
+  ],
+  "crammer": [
+    "*   **Global Scope:** IAM users, groups, and roles are global.",
+    "*   **Root User:** Secure it with MFA, use it to create the first admin user, then lock it away.",
+    "*   **Roles over Keys:** Use Roles for EC2 instances to access other services (like S3) instead of storing access keys."
+  ],
+  "traps": [
+    "1. **Attaching policies directly to users:** It's better to attach policies to groups and add users to groups for easier management.",
+    "2. **Using root keys in code:** Never embed root or IAM user access keys in your application code."
+  ],
+  "extended_quiz": [
+    "1. Detail the process of securing a newly created AWS account.",
+    "2. Explain how an EC2 instance uses an IAM Role to access an S3 bucket.",
+    "3. Describe the difference between Managed Policies and Inline Policies.",
+    "4. What is AWS Organizations and why is it useful?",
+    "5. How does MFA improve security in IAM?"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "title": "Automation and Feasibility - Study Pack",
+  "outline": [
+    "1. **Infrastructure as Code (IaC)**",
+    "- Concepts and benefits.",
+    "- AWS CloudFormation.",
+    "2. **Automation Tools**",
+    "- AWS Systems Manager.",
+    "- Auto Scaling.",
+    "3. **Feasibility and Cost Optimization**",
+    "- AWS Pricing Calculator.",
+    "- AWS Trusted Advisor."
+  ],
+  "notes": [
+    "**Infrastructure as Code (IaC):** The process of managing and provisioning computing infrastructure through machine-readable definition files, rather than physical hardware configuration or interactive configuration tools.",
+    "**AWS CloudFormation:** AWS's native IaC service. You write JSON or YAML templates to describe your desired infrastructure, and CloudFormation provisions it consistently.",
+    "**AWS Systems Manager:** Gives you visibility and control of your infrastructure on AWS. Can be used for automated patching and configuration management.",
+    "**AWS Trusted Advisor:** An online tool that provides real-time guidance to help you provision your resources following AWS best practices (Cost Optimization, Security, Fault Tolerance, Performance).",
+    "Automation reduces human error, speeds up deployment, and allows for infrastructure to be version-controlled just like software code."
+  ],
+  "recall_questions": [
+    "1. What is Infrastructure as Code (IaC)?",
+    "2. What AWS service is used to implement IaC?",
+    "3. In what languages are CloudFormation templates typically written?",
+    "4. What is the primary purpose of AWS Trusted Advisor?",
+    "5. Name a benefit of automating infrastructure deployment."
+  ],
+  "flashcards": [
+    "**Q:** What is CloudFormation?\n**A:** AWS service for defining infrastructure as code (IaC) using templates.",
+    "**Q:** What does Trusted Advisor check?\n**A:** Cost optimization, performance, security, fault tolerance, and service limits."
+  ],
+  "crammer": [
+    "*   **CloudFormation:** IaC. Consistency, repeatability, version control.",
+    "*   **Trusted Advisor:** Your automated cloud consultant for best practices.",
+    "*   **Automation:** Key to operating at scale in the cloud."
+  ],
+  "traps": [
+    "1. **Manually changing resources created by CloudFormation:** This causes \"drift\" and can break future CloudFormation updates. Always update via the template.",
+    "2. **Ignoring Trusted Advisor alerts:** Specially security and cost optimization alerts, which can save money and prevent breaches."
+  ],
+  "extended_quiz": [
+    "1. Compare manual infrastructure provisioning via the Console with Infrastructure as Code.",
+    "2. Explain the concept of CloudFormation \"Stack\".",
+    "3. How does AWS Systems Manager assist with fleet management?",
+    "4. Describe three categories that AWS Trusted Advisor analyzes.",
+    "5. How does automation support cost optimization in the cloud?"
+  ]
+}

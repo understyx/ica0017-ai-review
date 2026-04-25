@@ -1,0 +1,47 @@
+{
+  "title": "Compute: EC2, Containers, Serverless - Study Pack",
+  "outline": [
+    "1. **Amazon EC2 (Elastic Compute Cloud)**",
+    "- Virtual machines in the cloud.",
+    "- Instance types and pricing models.",
+    "2. **Containers**",
+    "- Docker basics.",
+    "- Amazon ECS (Elastic Container Service) & EKS (Elastic Kubernetes Service).",
+    "3. **Serverless Computing**",
+    "- AWS Lambda: Run code without provisioning servers."
+  ],
+  "notes": [
+    "**Amazon EC2** provides resizable compute capacity. You manage the OS, software, and networking configuration.",
+    "**EC2 Pricing Models:** On-Demand (pay by the second/hour), Reserved (commit for 1-3 years for a discount), Spot (bid on unused capacity, cheap but can be terminated).",
+    "**Containers** package code and dependencies together, ensuring consistency across environments. ECS and EKS orchestrate containers.",
+    "**AWS Lambda** is serverless compute. You upload your code, and Lambda automatically runs and scales it in response to events. You pay only for the compute time consumed."
+  ],
+  "recall_questions": [
+    "1. What does EC2 stand for?",
+    "2. Name the three primary EC2 pricing models.",
+    "3. What is the difference between ECS and EKS?",
+    "4. What is the main benefit of AWS Lambda?",
+    "5. In which compute service do you manage the underlying operating system?"
+  ],
+  "flashcards": [
+    "**Q:** Spot Instances vs On-Demand?\n**A:** Spot is cheaper but can be interrupted; On-Demand guarantees availability but costs more.",
+    "**Q:** What is Serverless?\n**A:** Abstraction of servers; you focus only on code. AWS manages scaling, patching, and provisioning (e.g., Lambda).",
+    "**Q:** ECS vs EKS?\n**A:** ECS is AWS's proprietary container orchestrator. EKS is managed Kubernetes."
+  ],
+  "crammer": [
+    "*   **EC2:** IaaS. High control, high management overhead.",
+    "*   **Lambda:** FaaS (Function as a Service). Code runs on triggers. Scales instantly. Zero administration.",
+    "*   **Docker/Containers:** Solves the \"works on my machine\" problem."
+  ],
+  "traps": [
+    "1. **Choosing Spot Instances for critical databases:** Spot instances can be terminated with 2 minutes notice; use them only for fault-tolerant, stateless workloads.",
+    "2. **Thinking serverless means no servers:** Servers still exist, but AWS manages them entirely."
+  ],
+  "extended_quiz": [
+    "1. Compare and contrast EC2 On-Demand and Reserved Instances.",
+    "2. Describe a use case where AWS Lambda is preferable to EC2.",
+    "3. Explain the lifecycle of a Docker container.",
+    "4. What are the advantages of using container orchestration tools like ECS or Kubernetes?",
+    "5. How does Auto Scaling work with EC2 instances?"
+  ]
+}
