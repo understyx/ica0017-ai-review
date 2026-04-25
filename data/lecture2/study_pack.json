@@ -15,7 +15,7 @@
   "notes": [
     "AWS provides a massive ecosystem of cloud services spanning compute, storage, networking, database, analytics, and more.",
     "**Regions:** Geographical areas that host AWS infrastructure (e.g., eu-west-1). Choosing the right region minimizes latency and ensures compliance.",
-    "**Availability Zones (AZs):** Distinct locations within a region that are engineered to be isolated from failures in other AZs. Every region has at least 2 AZs.",
+    "**Availability Zones (AZs):** Distinct locations within a region that are engineered to be isolated from failures in other AZs. Every region has at least 3 AZs.",
     "**Shared Responsibility Model:** AWS secures the underlying infrastructure (hardware, host OS, physical security), while the customer is responsible for guest OS patching, data encryption, and configuring firewalls."
   ],
   "recall_questions": [
