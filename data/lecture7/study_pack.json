@@ -1,0 +1,44 @@
+{
+  "title": "Logging and Monitoring - Study Pack",
+  "outline": [
+    "1. **Amazon CloudWatch**",
+    "- Monitoring performance and metrics.",
+    "- Alarms and Dashboards.",
+    "2. **AWS CloudTrail**",
+    "- Auditing API calls and governance.",
+    "3. **Logging Best Practices**",
+    "- Centralized logging.",
+    "- Log retention."
+  ],
+  "notes": [
+    "**CloudWatch:** Monitors *performance*. It collects metrics from AWS services (like EC2 CPU utilization), collects custom logs, and triggers Alarms based on thresholds.",
+    "**CloudTrail:** Monitors *API activity*. It records \"Who did what, when, and from where.\" Essential for security auditing and compliance.",
+    "If a user deletes an S3 bucket or launches an EC2 instance, CloudTrail records the API call, the user's identity, and the IP address.",
+    "If an EC2 instance's CPU usage spikes above 80%, CloudWatch can trigger an alarm to automatically add more instances (Auto Scaling)."
+  ],
+  "recall_questions": [
+    "1. Which service would you use to see who terminated an EC2 instance?",
+    "2. Which service would you use to monitor CPU utilization?",
+    "3. How do CloudWatch Alarms work?",
+    "4. What type of activity does CloudTrail log?",
+    "5. By default, how long does CloudTrail keep event history?"
+  ],
+  "flashcards": [
+    "**Q:** CloudWatch vs CloudTrail?\n**A:** CloudWatch monitors performance (metrics/logs). CloudTrail monitors API calls (auditing/security).",
+    "**Q:** What triggers an Auto Scaling event?\n**A:** A CloudWatch Alarm based on a specific metric threshold (e.g., CPU > 80%)."
+  ],
+  "crammer": [
+    "*   **CloudWatch:** Metrics, Alarms, Logs. Think \"Performance\".",
+    "*   **CloudTrail:** API logging. Think \"Auditing/Who Dunnit?\""
+  ],
+  "traps": [
+    "1. **Using CloudTrail to check CPU load:** CloudTrail tracks actions (API calls), not performance metrics. Use CloudWatch for metrics."
+  ],
+  "extended_quiz": [
+    "1. Describe a scenario where CloudWatch and CloudTrail work together to resolve a security incident.",
+    "2. What are CloudWatch Events (EventBridge)?",
+    "3. Why is it important to centralize CloudTrail logs into a secure S3 bucket?",
+    "4. Explain how custom metrics differ from standard metrics in CloudWatch.",
+    "5. How can you ensure that log files stored in S3 are not tampered with?"
+  ]
+}

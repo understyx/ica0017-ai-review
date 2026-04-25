@@ -1,0 +1,49 @@
+{
+  "title": "Storage: S3, EBS, EFS, RDS - Study Pack",
+  "outline": [
+    "1. **Object Storage: Amazon S3**",
+    "- Highly scalable, available, and durable.",
+    "- Storage classes (Standard, Glacier).",
+    "2. **Block Storage: Amazon EBS**",
+    "- Hard drives attached to EC2 instances.",
+    "3. **File Storage: Amazon EFS**",
+    "- Shared network file system for multiple EC2 instances.",
+    "4. **Databases: Amazon RDS**",
+    "- Relational Database Service (MySQL, PostgreSQL, etc.)."
+  ],
+  "notes": [
+    "**S3 (Simple Storage Service):** Object storage ideal for backups, media files, and static websites. Designed for 99.999999999% (11 9s) durability.",
+    "**EBS (Elastic Block Store):** Block-level storage volumes for EC2. Think of it as a virtual hard drive. An EBS volume must be in the same AZ as the EC2 instance it's attached to.",
+    "**EFS (Elastic File System):** Managed NFS. Can be mounted to hundreds of EC2 instances simultaneously. Scales automatically.",
+    "**RDS:** Managed relational databases. AWS handles backups, patching, and scaling. Supports Multi-AZ deployments for high availability."
+  ],
+  "recall_questions": [
+    "1. Which storage service is best for storing a 5GB video file?",
+    "2. Which storage type requires being in the same AZ as its EC2 instance?",
+    "3. Which service provides a file system that can be shared across multiple Linux instances?",
+    "4. What is the durability guarantee of Amazon S3?",
+    "5. Name two database engines supported by Amazon RDS."
+  ],
+  "flashcards": [
+    "**Q:** S3 vs EBS?\n**A:** S3 is Object storage accessed via API/web. EBS is Block storage attached directly to a single EC2 instance.",
+    "**Q:** What is S3 Glacier used for?\n**A:** Long-term archival of data at a very low cost, where retrieval times of minutes to hours are acceptable.",
+    "**Q:** RDS Multi-AZ vs Read Replicas?\n**A:** Multi-AZ is for disaster recovery (sync replication). Read Replicas are for scaling read performance (async replication)."
+  ],
+  "crammer": [
+    "*   **S3:** Infinite scale, object storage, web access.",
+    "*   **EBS:** Block storage, OS root volume, tied to an AZ.",
+    "*   **EFS:** Shared file system, Linux only, regional.",
+    "*   **RDS:** Relational databases, managed."
+  ],
+  "traps": [
+    "1. **Trying to attach an EBS volume to instances in different AZs:** EBS volumes are locked to their specific Availability Zone.",
+    "2. **Using RDS for unstructured data:** RDS is for relational data. Use DynamoDB or S3 for unstructured data."
+  ],
+  "extended_quiz": [
+    "1. Explain the differences between S3 Standard, S3 Infrequent Access, and S3 Glacier.",
+    "2. How does an EBS snapshot work, and where is it stored?",
+    "3. Compare EFS with EBS. When would you use one over the other?",
+    "4. Describe the benefits of using a managed database service like RDS instead of installing MySQL on an EC2 instance.",
+    "5. What are IOPS, and why do they matter for EBS volumes?"
+  ]
+}
