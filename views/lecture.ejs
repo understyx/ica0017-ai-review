@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= lecture_id.charAt(0).toUpperCase() + lecture_id.slice(1) %> Study Pack</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container study-container">
+        <header>
+            <a href="/" class="back-link">&larr; Back to all modules</a>
+        </header>
+
+        <main class="markdown-body">
+            <h1><%= study_pack.title %></h1>
+
+            <% if (study_pack.outline && study_pack.outline.length > 0) { %>
+                <h2>Topic Outline</h2>
+                <ul>
+                    <% study_pack.outline.forEach(function(item) { %>
+                        <li><%- item.replace(/^- /, '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') %></li>
+                    <% }); %>
+                </ul>
+            <% } %>
+
+            <% if (study_pack.notes && study_pack.notes.length > 0) { %>
+                <h2>Clean Consolidated Notes</h2>
+                <% let inList = false; %>
+                <% study_pack.notes.forEach(function(note) { %>
+                    <% if (note.startsWith('###')) { %>
+                        <% if (inList) { %> </ul> <% inList = false; } %>
+                        <h3><%= note.replace(/^### /, '') %></h3>
+                    <% } else if (note.startsWith('-')) { %>
+                        <% if (!inList) { %> <ul> <% inList = true; } %>
+                        <li><%- note.replace(/^- /, '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') %></li>
+                    <% } else { %>
+                        <% if (inList) { %> </ul> <% inList = false; } %>
+                        <p><%- note.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') %></p>
+                    <% } %>
+                <% }); %>
+                <% if (inList) { %> </ul> <% } %>
+            <% } %>
+
+            <% if (study_pack.recall_questions && study_pack.recall_questions.length > 0) { %>
+                <h2>Recall Questions</h2>
+                <ol>
+                    <% study_pack.recall_questions.forEach(function(q) { %>
+                        <% if (q.match(/^\d+\./)) { %>
+                             <li><%= q.replace(/^\d+\.\s*/, '') %></li>
+                        <% } %>
+                    <% }); %>
+                </ol>
+            <% } %>
+
+            <% if (study_pack.crammer && study_pack.crammer.length > 0) { %>
+                <h2>1-Page Exam Crammer</h2>
+                <% let inCrammerList = false; %>
+                <% study_pack.crammer.forEach(function(item) { %>
+                     <% if (item.startsWith('**')) { %>
+                        <% if (inCrammerList) { %> </ul> <% inCrammerList = false; } %>
+                        <h3><%- item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/:/g, '') %></h3>
+                     <% } else if (item.startsWith('*')) { %>
+                        <% if (!inCrammerList) { %> <ul> <% inCrammerList = true; } %>
+                        <li><%- item.replace(/^\*\s*/, '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') %></li>
+                     <% } else { %>
+                         <% if (inCrammerList) { %> </ul> <% inCrammerList = false; } %>
+                         <p><%- item %></p>
+                     <% } %>
+                <% }); %>
+                <% if (inCrammerList) { %> </ul> <% } %>
+            <% } %>
+
+            <% if (study_pack.flashcards && study_pack.flashcards.length > 0) { %>
+                <h2>Flashcards</h2>
+                <div class="flashcard-list">
+                    <% let currentQ = null; %>
+                    <% study_pack.flashcards.forEach(function(cardLine) { %>
+                        <% if (cardLine.startsWith('**Q:**')) { %>
+                            <% currentQ = cardLine.replace('**Q:**', '').trim(); %>
+                        <% } else if (cardLine.startsWith('**A:**') && currentQ) { %>
+                            <div class="flashcard">
+                                <strong>Q:</strong> <%= currentQ %><br>
+                                <strong>A:</strong> <%- cardLine.replace('**A:**', '').trim().replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') %>
+                            </div>
+                            <hr>
+                            <% currentQ = null; %>
+                        <% } %>
+                    <% }); %>
+                </div>
+            <% } %>
+
+            <% if (study_pack.traps && study_pack.traps.length > 0) { %>
+                <h2>Likely Exam Traps</h2>
+                <ol>
+                <% let currentTrap = null; %>
+                <% study_pack.traps.forEach(function(trapLine) { %>
+                    <% if (trapLine.match(/^\d+\./)) { %>
+                        <% if(currentTrap) { %> </li> <% } %>
+                        <li><strong><%= trapLine.replace(/^\d+\.\s*\*\*(.*?)\*\*/, '$1') %></strong>
+                        <% currentTrap = true; %>
+                    <% } else if (trapLine.includes('*Trap:*') || trapLine.includes('*Answer:*')) { %>
+                        <p><%- trapLine.replace(/\*(.*?)\*/g, '<em>$1</em>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') %></p>
+                    <% } %>
+                <% }); %>
+                <% if(currentTrap) { %> </li> <% } %>
+                </ol>
+            <% } %>
+
+            <% if (study_pack.extended_quiz && study_pack.extended_quiz.length > 0) { %>
+                <h2>Extended Quiz</h2>
+                <ol>
+                    <% study_pack.extended_quiz.forEach(function(q) { %>
+                        <% if (q.match(/^\d+\./)) { %>
+                             <li><%= q.replace(/^\d+\.\s*/, '') %></li>
+                        <% } %>
+                    <% }); %>
+                </ol>
+            <% } %>
+
+        </main>
+    </div>
+</body>
+</html>
