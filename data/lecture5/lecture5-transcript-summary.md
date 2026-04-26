@@ -1,38 +1,89 @@
-Lecture topic: AWS Storage and Database Services
+# 1. Lecture topic
+AWS Storage and Database Services, detailing object, block, and file storage solutions alongside managed relational databases like Amazon RDS and Amazon Aurora.
 
-Core concepts:
-- Overview of AWS storage types: Object, Block, and File storage.
-- Amazon S3 for highly scalable, durable object storage.
-- Amazon EBS for block storage attached to EC2 instances.
-- Amazon EFS for shared file storage across multiple EC2 instances.
-- Managed relational databases with Amazon RDS.
-- High availability configurations in databases (Multi-AZ vs. Read Replicas).
+# 2. Executive summary
+This lecture breaks down the core storage and database options available in AWS, categorizing them by use case. It introduces Amazon S3 as the highly scalable, highly durable object storage ideal for static assets and backups. For servers needing traditional hard drives, the lecture covers Amazon EBS (single-instance block storage) and Amazon EFS (multi-instance shared file storage). Furthermore, it explores Amazon RDS, a managed service that simplifies running relational databases by automating administrative tasks like patching and backups. Crucially, the lecture highlights how to architect these databases for both high availability (using Multi-AZ deployments) and performance scaling (using Read Replicas), concluding with an overview of Amazon Aurora's custom cloud-native architecture.
 
-Key definitions:
-- Amazon S3 (Simple Storage Service): Object storage service accessed via web/API, ideal for media, backups, and static websites. Features 99.999999999% (11 9s) durability.
-- S3 Glacier: A low-cost S3 storage class designed specifically for long-term data archival where immediate retrieval is not required.
-- Amazon EBS (Elastic Block Store): Block-level storage volumes acting as virtual hard drives attached directly to a single EC2 instance.
-- Amazon EFS (Elastic File System): A managed network file system (NFS) that can be mounted to hundreds of Linux EC2 instances simultaneously and scales automatically.
-- Amazon RDS (Relational Database Service): A managed relational database service that handles maintenance, backups, and patching (supports engines like MySQL, PostgreSQL).
-- RDS Multi-AZ: Synchronous database replication across Availability Zones for disaster recovery and high availability.
-- RDS Read Replicas: Asynchronous database replication used to scale out read-heavy database workloads.
+# 3. Key concepts and definitions
+*   **Object storage:** A storage architecture that manages data as objects, highly scalable and accessed via API (e.g., Amazon S3).
+*   **Block storage:** Storage that provides fixed-sized raw storage capacity, acting as virtual hard drives attached to servers (e.g., Amazon EBS).
+*   **File storage:** A hierarchical storage methodology (folders/directories) that can be accessed concurrently by multiple instances (e.g., Amazon EFS).
+*   **Amazon S3 (Simple Storage Service):** Highly durable object storage ideal for media, backups, and static websites. Guarantees 99.999999999% (11 9s) durability.
+*   **S3 Glacier:** A low-cost S3 storage class specifically designed for long-term data archival where immediate retrieval is not required.
+*   **Amazon EBS (Elastic Block Store):** Block-level storage volumes acting as virtual hard drives attached directly to a single EC2 instance.
+*   **Amazon EFS (Elastic File System):** A managed network file system (NFS) that can be mounted to many Linux EC2 instances simultaneously and scales automatically.
+*   **Amazon RDS (Relational Database Service):** A managed service that automates database setup, operations, patching, and backups for standard engines (MySQL, PostgreSQL, etc.).
+*   **RDS Multi-AZ:** Synchronous database replication across different Availability Zones primarily used for disaster recovery and high availability.
+*   **RDS Read Replicas:** Asynchronous database replication used to scale out read-heavy database workloads and improve performance.
+*   **Amazon Aurora:** AWS's custom, cloud-native relational database engine compatible with MySQL and PostgreSQL, featuring a distributed, multi-master, and highly available architecture.
 
-Important examples:
-- Storing a large 5GB video file or static website assets in S3.
-- Attaching an EBS volume to an EC2 instance to serve as its root boot drive.
-- Sharing a common configuration directory across a fleet of EC2 web servers using EFS.
-- Archiving compliance logs for 5 years using S3 Glacier to minimize storage costs.
+# 4. Main arguments or theories explained simply
+*   **Choosing the right storage:** The type of storage chosen (Object, Block, File) must align with the application's access patterns and scaling requirements. You cannot treat S3 like a traditional hard drive for an operating system, just as you shouldn't use EBS for storing massive amounts of static web images efficiently.
+*   **Managed vs. Unmanaged Databases:** Using a managed service like RDS removes the "heavy lifting" (backups, patching, failover) associated with running databases on plain virtual machines (EC2). This allows developers to focus on the application rather than database administration.
+*   **High Availability vs. Scalability in DBs:** Multi-AZ deployments are meant as a safety net (Disaster Recovery)—if the main database fails, the standby takes over automatically. Read Replicas, however, are meant for performance scaling—offloading read requests (like running reports) from the primary database to keep it fast.
+*   **Vendor Lock-in (Aurora):** While Amazon Aurora offers high performance and a robust cloud-native architecture, adopting it tightly couples your application to AWS, making it significantly harder to migrate to another cloud provider compared to using standard open-source engines like vanilla PostgreSQL.
 
-Likely exam points:
-- The fundamental differences between S3 (Object), EBS (Block), and EFS (File).
-- The constraint that an EBS volume must reside in the same Availability Zone (AZ) as its attached EC2 instance.
-- Knowing S3's "11 9s" durability guarantee.
-- Understanding the difference in use cases between RDS Multi-AZ (Disaster Recovery) and Read Replicas (Performance Scaling).
+# 5. Important examples from the lecture
+*   **Amazon S3:** Storing a large 5GB video file, static website assets, or keeping a family photo archive.
+*   **S3 Glacier:** Archiving compliance logs or historical data for 5 years to minimize costs since immediate access isn't needed.
+*   **Amazon EBS:** Attaching an EBS volume to an EC2 instance to serve as its root boot drive, similar to a physical hard drive in a laptop.
+*   **Amazon EFS:** Sharing a common configuration directory across a fleet of EC2 web servers.
+*   **Database Scaling:** A scenario where user IDs (e.g., Siim's ID) are written to the primary database, and that change is quickly replicated across multiple locations or Read Replicas to ensure the system is "bomb-proof" (highly available).
 
-Questions to review:
-1. What are the key differences between Amazon S3, EBS, and EFS regarding access patterns and attachments?
+# 6. What the professor emphasized
+*   **The fundamental differences** between the storage types: S3 (Object), EBS (Block), and EFS (File).
+*   **Durability of S3:** S3's "11 9s" (99.999999999%) durability guarantee means data loss is practically impossible.
+*   **EBS AZ Constraint:** An EBS volume is tied to a specific Availability Zone and can typically only be attached to one EC2 instance at a time.
+*   **RDS Features:** The importance of understanding the functional differences and use cases between RDS Multi-AZ and Read Replicas.
+*   **Architectural Complexity:** As systems demand higher availability (like Aurora's distributed architecture), the underlying architecture becomes significantly more complex to ensure consistency and failover capabilities.
+
+# 7. Likely exam-relevant takeaways
+*   Identify the correct AWS storage service (S3, EBS, EFS) based on a given use case scenario.
+*   Understand the "11 9s" durability of S3.
+*   Differentiate between the purposes of RDS Multi-AZ (High Availability/Disaster Recovery) and RDS Read Replicas (Read Scaling/Performance).
+*   Recognize that EBS volumes are bound to a single Availability Zone.
+*   Understand the trade-offs of using Amazon Aurora (high performance/availability vs. potential vendor lock-in).
+
+# 8. Review questions
+1. What are the key differences between Amazon S3, EBS, and EFS regarding access patterns and how they attach to compute resources?
 2. Which AWS storage service is most appropriate for long-term data archival, and why?
 3. How does RDS Multi-AZ differ functionally from RDS Read Replicas?
+4. What is the main advantage of using a managed database service like Amazon RDS over installing a database on an EC2 instance?
+5. Why might a company be hesitant to adopt Amazon Aurora despite its performance benefits?
 
-5-sentence plain-English recap:
-This lecture breaks down the core storage and database options available in AWS, categorizing them by use case. It introduces Amazon S3 as the go-to object storage for files accessed over the web, renowned for its extreme durability. For servers needing traditional hard drives, the lecture covers Amazon EBS (single-instance block storage) and Amazon EFS (multi-instance shared file storage). Furthermore, it explores Amazon RDS, a managed service that simplifies running relational databases by automating administrative tasks. Crucially, the lecture highlights how to architect these databases for both high availability (using Multi-AZ deployments) and performance scaling (using Read Replicas).
+# 9. Flashcards
+Q: What type of storage is Amazon S3?
+A: Object storage.
+
+Q: What is the primary use case for Amazon S3 Glacier?
+A: Low-cost, long-term data archival where immediate retrieval is not needed.
+
+Q: What is Amazon EBS, and what type of storage does it provide?
+A: Elastic Block Store; it provides Block storage acting as virtual hard drives for EC2 instances.
+
+Q: Can an EBS volume be attached to instances in different Availability Zones?
+A: No, an EBS volume must reside in the same Availability Zone as its attached EC2 instance.
+
+Q: What type of storage is Amazon EFS?
+A: File storage (a managed network file system).
+
+Q: Can Amazon EFS be mounted to multiple EC2 instances simultaneously?
+A: Yes, it can be shared across hundreds of Linux EC2 instances.
+
+Q: What does Amazon RDS stand for?
+A: Relational Database Service.
+
+Q: What is the main purpose of an RDS Multi-AZ deployment?
+A: High availability and disaster recovery (synchronous replication).
+
+Q: What is the main purpose of an RDS Read Replica?
+A: To scale out read-heavy database workloads and improve performance (asynchronous replication).
+
+Q: What is Amazon Aurora?
+A: AWS's custom, cloud-native relational database engine compatible with MySQL and PostgreSQL.
+
+Q: What is the durability guarantee of Amazon S3?
+A: 99.999999999% (11 9s).
+
+Q: What trade-off is associated with using Amazon Aurora?
+A: It can lead to vendor lock-in due to its specific proprietary architecture.
