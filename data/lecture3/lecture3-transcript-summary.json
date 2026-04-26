@@ -52,5 +52,66 @@
     "According to the lecture, what is the biggest drawback of building an architecture heavily reliant on AWS Lambda?",
     "What is the maximum execution time for an AWS Lambda function as mentioned in the lecture?"
   ],
-  "flashcards": []
+  "flashcards": [
+    {
+      "question": "Under the Shared Responsibility Model, who pays if a user writes a script that runs up a massive cloud bill?",
+      "answer": "The user. Cloud providers may forgive it once, but it is ultimately the user's responsibility."
+    },
+    {
+      "question": "What defines an EC2 \"Instance Type\"?",
+      "answer": "A pre-defined combination of virtual hardware, such as CPU, RAM, and network capabilities, which cannot be individually modified."
+    },
+    {
+      "question": "What does AMI stand for and what is it?",
+      "answer": "Amazon Machine Image; it is a pre-configured template containing an operating system and necessary drivers to run an instance."
+    },
+    {
+      "question": "Which EC2 pricing model is the most expensive and offers no long-term commitment?",
+      "answer": "On-Demand."
+    },
+    {
+      "question": "Which EC2 pricing model offers highly discounted rates but can be interrupted by the cloud provider at any moment?",
+      "answer": "Spot instances."
+    },
+    {
+      "question": "What is the AWS Nitro System?",
+      "answer": "An AWS server architecture that offloads network, storage, and management controllers to dedicated hardware cards to improve security and performance."
+    },
+    {
+      "question": "What specific tasks does the ultra-thin Nitro hypervisor handle?",
+      "answer": "Only CPU and memory allocation."
+    },
+    {
+      "question": "What is Firecracker?",
+      "answer": "A highly lightweight, secure microVM technology developed by AWS for running containers and serverless functions with very low overhead."
+    },
+    {
+      "question": "What is Amazon ECS?",
+      "answer": "Elastic Container Service, AWS's proprietary container orchestration tool where the control plane is free of charge."
+    },
+    {
+      "question": "What is Amazon EKS?",
+      "answer": "Elastic Kubernetes Service, AWS's managed Kubernetes platform which charges a monthly fee for its control plane."
+    },
+    {
+      "question": "What is AWS Fargate?",
+      "answer": "A serverless compute engine for containers where each container runs in its own isolated microVM without the user managing underlying servers."
+    },
+    {
+      "question": "What is AWS Lambda?",
+      "answer": "A serverless computing service that runs code in response to events without requiring the user to provision or manage servers."
+    },
+    {
+      "question": "What is a significant strategic downside of using AWS Lambda?",
+      "answer": "Severe vendor lock-in, making it difficult to migrate the architecture to Azure or Google Cloud."
+    },
+    {
+      "question": "What is the maximum execution runtime limit for an AWS Lambda function?",
+      "answer": "15 minutes."
+    },
+    {
+      "question": "What is a common difficulty when debugging AWS Lambda applications?",
+      "answer": "Logs can be scattered and difficult to trace without a centralized logging solution."
+    }
+  ]
 }

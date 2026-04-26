@@ -61,7 +61,7 @@ function detectSection(line) {
     // N. **Title**
     if (/^\d+\.\s+\*\*/.test(line)) return normaliseHeading(line);
     // N. Plain text heading (e.g. "1. Lecture topic in 1 sentence")
-    if (/^\d+\.\s+[A-Z5-9]/.test(line)) {
+    if (/^\d+\.\s+[A-Z0-9]/.test(line)) {
         const key = normaliseHeading(line);
         if (key) return key;
     }
@@ -91,14 +91,25 @@ function parseFlashcards(lines) {
         if (!s) continue;
 
         // --- Question patterns ---
-        const qBold = s.match(/\*\*Q[:.]\*\*\s*(.*)/i) || s.match(/\*\*Q:\s*(.*?)\*\*\s*$/i);
-        const qDashBold = s.match(/^[*-]\s+\*\*Q[:.]\*\*[:\s]\s*(.*)/i);
+        // Handles: **Q:** text  |  **Q**: text  |  **Q** text  |  **Q: text**
+        // Also with leading dash/star: - **Q**: text  |  * **Q**: text
+        const qBold = s.match(/\*\*Q[:.]\*\*\s*(.*)/i)   // **Q:** text
+                   || s.match(/\*\*Q\*\*[:\s]\s*(.*)/i)   // **Q**: text
+                   || s.match(/\*\*Q:\s*(.*?)\*\*\s*$/i); // **Q: text**
+        const qDashBold = s.match(/^[*-]\s+\*\*Q[:.]\*\*[:\s]\s*(.*)/i) // - **Q:** text
+                       || s.match(/^[*-]\s+\*\*Q\*\*[:\s]\s*(.*)/i);    // - **Q**: text
         const qPlain = s.match(/^Q:\s+(.*)/i);
 
         // --- Answer patterns ---
-        const aBold = s.match(/\*\*A[:.]\*\*\s*(.*)/i) || s.match(/\*\*A:\s*(.*?)\*\*\s*$/i);
-        const aDashBold = s.match(/^[*-]\s+\*\*A[:.]\*\*[:\s]\s*(.*)/i) ||
-                          s.match(/^\*\*A[:.]\*\*:\s*(.*)/i);
+        // Handles: **A:** text  |  **A**: text  |  **A** text  |  **A: text**
+        // Also with leading dash/star or plain indented line
+        const aBold = s.match(/\*\*A[:.]\*\*\s*(.*)/i)   // **A:** text
+                   || s.match(/\*\*A\*\*[:\s]\s*(.*)/i)   // **A**: text
+                   || s.match(/\*\*A:\s*(.*?)\*\*\s*$/i); // **A: text**
+        const aDashBold = s.match(/^[*-]\s+\*\*A[:.]\*\*[:\s]\s*(.*)/i) // - **A:** text
+                       || s.match(/^[*-]\s+\*\*A\*\*[:\s]\s*(.*)/i)     // - **A**: text
+                       || s.match(/^\*\*A[:.]\*\*[:\s]\s*(.*)/i)        // **A:** text (no dash)
+                       || s.match(/^\*\*A\*\*[:\s]\s*(.*)/i);           // **A**: text (no dash)
         const aPlain = s.match(/^A:\s+(.*)/i);
 
         if (qBold) {
